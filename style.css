@@ -2,18 +2,18 @@
 body {
     margin: 0;
     padding: 0;
-    /* Fondo fijo que no se mueve */
+    /* Fondo fijo que no se mueve nunca */
     background: url('assets/fondo-carta.gif') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Courier Prime', monospace;
     height: 100vh;
     width: 100vw;
-    overflow: hidden; /* Evita que se pueda hacer scroll */
+    overflow: hidden; /* Evita scroll indeseado */
 }
 
-/* --- ESCRITORIO (FIXED PARA QUE NO SE MUEVA) --- */
+/* --- ESCRITORIO FIXED (SOLUCIÓN AL CENTRADO) --- */
 .escritorio {
-    position: fixed; /* CLAVE: Fija el escritorio a la pantalla */
+    position: fixed; /* Esto evita que se mueva al aparecer barras del navegador */
     top: 0; 
     left: 0;
     width: 100%; 
@@ -21,15 +21,15 @@ body {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; /* Centra todo verticalmente */
+    justify-content: center; /* Centra todo perfectamente */
     z-index: 1;
 }
 
-/* --- BURBUJA DE TEXTO MEJORADA (ESTILO CÓMIC) --- */
-.burbuja-mensaje {
+/* --- BURBUJA CÓMIC --- */
+.burbuja-comic {
     position: relative;
     background: #ffffff;
-    border-radius: 20px; /* Bordes redondeados */
+    border-radius: 30px; /* Redondita */
     padding: 15px 25px;
     font-family: 'Press Start 2P', cursive; 
     font-size: 11px;
@@ -37,40 +37,34 @@ body {
     color: #333;
     text-align: center;
     max-width: 240px;
-    margin-bottom: 40px; /* Separación con los iconos */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08); /* Sombra suave */
-    border: 2px solid #000; /* Borde negro estilo cómic */
+    margin-bottom: 50px; /* Separación con los iconos */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid #000;
     animation: flotar 3s ease-in-out infinite;
 }
 
-/* El piquito de la burbuja (Triángulo) */
-.burbuja-mensaje::after {
+/* El piquito de la burbuja */
+.burbuja-comic::after {
     content: '';
     position: absolute;
-    bottom: -10px; /* Lo pone abajo */
-    left: 50%;
+    bottom: -10px; left: 50%;
     transform: translateX(-50%);
     border-width: 10px 10px 0;
     border-style: solid;
-    border-color: #000 transparent; /* Borde negro del pico */
-    display: block;
-    width: 0;
+    border-color: #000 transparent;
+    display: block; width: 0;
 }
-.burbuja-mensaje::before {
+.burbuja-comic::before {
     content: '';
     position: absolute;
-    bottom: -7px; /* Lo pone encima del borde negro para rellenar de blanco */
-    left: 50%;
+    bottom: -7px; left: 50%;
     transform: translateX(-50%);
     border-width: 10px 10px 0;
     border-style: solid;
-    border-color: #fff transparent; /* Color blanco */
-    display: block;
-    width: 0;
-    z-index: 1;
+    border-color: #fff transparent;
+    display: block; width: 0; z-index: 1;
 }
 
-/* Animación suave */
 @keyframes flotar {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
@@ -79,42 +73,31 @@ body {
 /* --- ICONOS DEL ESCRITORIO --- */
 .fila-iconos {
     display: flex; 
-    gap: 50px; /* Espacio entre iconos */
-    align-items: flex-end; /* Alinea la base de los iconos */
+    gap: 50px; 
+    align-items: flex-end;
 }
 
 .icono-app {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    cursor: pointer; 
-    width: 80px;
-    transition: transform 0.1s;
+    display: flex; flex-direction: column; align-items: center; 
+    cursor: pointer; width: 80px; transition: transform 0.1s;
 }
-.icono-app:active { transform: scale(0.95); } /* Efecto click */
+.icono-app:active { transform: scale(0.95); }
 
 .icono-app img { 
-    width: 65px; 
-    height: 65px; 
-    object-fit: contain; 
+    width: 65px; height: 65px; object-fit: contain; 
     filter: drop-shadow(0 4px 2px rgba(0,0,0,0.3));
 }
 .icono-app p { 
-    background: rgba(0, 0, 0, 0.7); 
-    color: white; 
-    padding: 4px 8px; 
-    border-radius: 10px;
-    font-family: 'Press Start 2P'; 
-    font-size: 9px; 
-    margin-top: 8px; 
-    text-shadow: 1px 1px 0 #000;
+    background: rgba(0, 0, 0, 0.7); color: white; 
+    padding: 4px 8px; border-radius: 10px;
+    font-family: 'Press Start 2P'; font-size: 9px; 
+    margin-top: 8px; text-shadow: 1px 1px 0 #000;
 }
 
-/* --- VENTANAS FLOTANTES (CORAZON/JUEGOS) --- */
+/* --- VENTANAS RETRO (ROSA) --- */
 .ventana-pixel {
-    position: fixed; /* Fixed para que no afecte el layout */
-    top: 50%; 
-    left: 50%; 
+    position: absolute; /* Relativo al escritorio fixed */
+    top: 50%; left: 50%; 
     transform: translate(-50%, -50%);
     width: 300px;
     background: #e0e0e0;
@@ -124,25 +107,15 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 .barra-titulo {
-    background: #ff69b4; 
-    padding: 8px 10px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    border-bottom: 3px solid black; 
-    color: white;
-    text-shadow: 2px 2px 0 black;
-    font-size: 10px;
+    background: #ff69b4; /* Rosa */
+    padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 3px solid black; color: white;
+    text-shadow: 2px 2px 0 black; font-size: 10px;
 }
 .btn-x {
-    background: #ff4d4d; 
-    color: white; 
-    border: 2px solid white; 
-    box-shadow: 2px 2px 0 black;
-    cursor: pointer; 
-    font-family: 'Press Start 2P'; 
-    font-size: 10px;
-    padding: 2px 5px;
+    background: #ff4d4d; color: white; border: 2px solid white; 
+    box-shadow: 2px 2px 0 black; cursor: pointer; 
+    font-family: 'Press Start 2P'; font-size: 10px; padding: 2px 5px;
 }
 .contenido-pixel { padding: 20px; text-align: center; }
 .pixel-text { font-size: 10px; margin-bottom: 20px; color: black; line-height: 1.5; }
@@ -155,7 +128,7 @@ body {
 /* --- OVERLAYS LIMPIOS (CARTA/PLAYLIST) --- */
 .overlay-clean {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: transparent; /* Fondo transparente */
+    background: transparent; /* Fondo transparente para ver el gif atrás */
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     z-index: 100;
     padding: 20px;
@@ -174,12 +147,12 @@ body {
     width: 100%; max-width: 400px;
     display: flex; flex-direction: column; gap: 15px;
     max-height: 90vh;
-    overflow-y: auto; /* Permite scroll si la pantalla es muy chica */
+    overflow-y: auto;
 }
 
 /* CAJAS GLASS (CONTENIDO) */
 .caja-glass {
-    background: rgba(15, 15, 30, 0.85); /* Fondo oscuro muy elegante */
+    background: rgba(15, 15, 30, 0.85); /* Fondo oscuro elegante */
     backdrop-filter: blur(8px);
     border-radius: 20px;
     padding: 20px;
@@ -203,16 +176,16 @@ body {
 }
 .btn-pregunta:hover { background: #ff69b4; color: white; }
 
-/* --- MODALES / POPUPS (San Valentin) --- */
+/* --- MODALES / POPUPS (PIXEL ART) --- */
 .modal-backdrop {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.8); /* Oscurece el fondo */
     z-index: 200;
     display: flex; align-items: center; justify-content: center;
 }
 
 .popup-pixel-art {
-    background: #ffe4e1;
+    background: #ffe4e1; /* Rosa claro */
     border: 4px solid #ff69b4;
     padding: 30px 20px; width: 280px; text-align: center;
     font-family: 'Press Start 2P'; font-size: 10px;

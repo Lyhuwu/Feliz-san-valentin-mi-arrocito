@@ -25,17 +25,17 @@
             <button class="btn-cerrar" onclick="cerrarCarpeta('ventana-corazon')">✖</button>
         </div>
         <div class="contenido-carpeta">
-            <div class="icono-archivo" onclick="abrirVisor()">
+            <div class="icono-archivo" onclick="abrirOverlay('overlay-carta')">
                 <img src="assets/icon-heart.gif" alt="Carta">
                 <p>Carta.txt</p>
             </div>
-            <div class="icono-archivo" onclick="abrirVisor()">
+            <div class="icono-archivo" onclick="abrirOverlay('overlay-playlist')">
                 <img src="assets/icon-music.gif" alt="Playlist">
-                <p>Playlist.mp3</p>
+                <p>Playlist</p>
             </div>
             <div class="icono-archivo" onclick="window.location.href='universo.html'">
                 <img src="assets/universo.gif" alt="Universo">
-                <p>MiUniverso.exe</p>
+                <p>Galaxia.exe</p>
             </div>
         </div>
     </div>
@@ -57,61 +57,75 @@
         </div>
     </div>
 
-    <div id="visor-overlay" class="overlay-container" style="display:none;">
+    <div id="overlay-carta" class="overlay-fullscreen" style="display:none;">
+        <button class="btn-regresar" onclick="cerrarOverlay('overlay-carta')">⬅ Regresar</button>
         
-        <button class="btn-cerrar-overlay" onclick="cerrarVisor()">✖</button>
-
-        <div class="visor-content">
-            
-            <div class="caja-video">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/800abNDR_Ao" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+        <div class="contenido-centrado">
+            <div class="marco-video">
+                <video width="100%" height="100%" controls style="border-radius: 10px;">
+                    <source src="assets/video.mp4" type="video/mp4">
+                    Tu navegador no soporta este video.
+                </video>
             </div>
 
-            <div class="caja-texto">
-                <p class="titulo-carta">Mi amor,</p>
-                <p>Hoy quiero pausar el tiempo...</p>
-                <br>
-                <p>(ESCRIBE AQUÍ TU CARTA LARGA...)</p>
-                <br>
-                <p>Te amo, siempre.</p>
-                
-                <button class="btn-accion">TENGO UNA PREGUNTA...</button>
-            </div>
+            <h1 class="titulo-carta">Mi niña hermosa,</h1>
+            <p class="texto-carta">
+                Hoy quiero pausar el tiempo solo para decirte cuánto te amo.<br><br>
+                (ESCRIBE AQUÍ TU CARTA LARGA...)<br><br>
+                Eres mi persona favorita en todo el universo.
+            </p>
 
+            <p class="pregunta-valentin">¿Quieres ser mi San Valentín?</p>
+
+            <div class="botones-container">
+                <button class="btn-si" onclick="alert('¡Sabía que dirías que sí! Te amo ❤️')">¡Obvio sí!</button>
+                <button id="btn-no" class="btn-no" onmouseover="moverBoton()" onclick="moverBoton()">Mmm no sé</button>
+            </div>
         </div>
     </div>
 
+    <div id="overlay-playlist" class="overlay-fullscreen" style="display:none;">
+        <button class="btn-regresar" onclick="cerrarOverlay('overlay-playlist')">⬅ Regresar</button>
+        
+        <div class="contenido-centrado">
+            <h2 style="color:white; text-shadow: 2px 2px 4px #000; margin-bottom: 20px;">Nuestra Vibe 🎵</h2>
+            
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    </div>
+
     <script>
-        // Función para abrir las carpetas del escritorio
+        // --- LÓGICA DE CARPETAS ---
         function abrirCarpeta(id) {
-            // Cerramos cualquier otra carpeta abierta
+            // Cierra todas antes de abrir la nueva
             document.querySelectorAll('.ventana-carpeta').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
-
-        // Función para cerrar carpetas
         function cerrarCarpeta(id) {
             document.getElementById(id).style.display = 'none';
         }
 
-        // Función para abrir el Visor Especial (Carta/Playlist)
-        function abrirVisor() {
-            // Opcional: Cerrar la carpeta de atrás para limpiar la vista
-            // cerrarCarpeta('ventana-corazon'); 
-            document.getElementById('visor-overlay').style.display = 'flex';
+        // --- LÓGICA DE OVERLAYS (PANTALLA COMPLETA) ---
+        function abrirOverlay(id) {
+            cerrarCarpeta('ventana-corazon'); // Cierra la ventanita gris
+            document.getElementById(id).style.display = 'flex'; // Abre el overlay
+        }
+        function cerrarOverlay(id) {
+            document.getElementById(id).style.display = 'none';
+            // Opcional: Si quieres que al cerrar vuelva a abrir la carpeta, descomenta la siguiente línea:
+            document.getElementById('ventana-corazon').style.display = 'block';
         }
 
-        // Función para cerrar el Visor
-        function cerrarVisor() {
-            document.getElementById('visor-overlay').style.display = 'none';
+        // --- LÓGICA DEL BOTÓN TRAMPOSO ---
+        function moverBoton() {
+            const btnNo = document.getElementById('btn-no');
+            // Mueve el botón a una posición aleatoria en la ventana visible
+            const x = Math.random() * (window.innerWidth - 100); // Restamos el ancho aprox del botón
+            const y = Math.random() * (window.innerHeight - 50); // Restamos el alto aprox
+            
+            btnNo.style.position = 'fixed'; // Se libera del flujo normal
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
         }
     </script>
 </body>

@@ -9,6 +9,14 @@
 </head>
 <body>
 
+    <div id="pantalla-inicio" class="pantalla-inicio">
+        <div class="contenido-inicio">
+            <h1 class="titulo-intro">Para mi dulce,<br>dulce amada💖</h1>
+            <p class="subtitulo-intro">Hecho con mucho amor y cariño.💌</p>
+            <button class="btn-entrar" onclick="entrarAlSistema()">▶ CLICK AQUÍ</button>
+        </div>
+    </div>
+
     <div id="escritorio" class="escritorio">
         
         <div class="burbuja-comic">
@@ -74,7 +82,6 @@
 
     <div id="overlay-carta" class="overlay-clean" style="display:none;">
         <button class="btn-cerrar-clean" onclick="cerrarModoLectura('overlay-carta')">✖</button>
-        
         <div class="container-vertical">
             <div class="caja-glass video-box">
                 <video width="100%" height="100%" controls>
@@ -82,7 +89,6 @@
                     Tu navegador no soporta el video.
                 </video>
             </div>
-
             <div class="caja-glass texto-box">
                 <p class="typewriter">Mi amor,</p>
                 <br>
@@ -93,7 +99,6 @@
                 </p>
                 <br>
                 <p class="typewriter">Te amo, siempre.</p>
-                
                 <button class="btn-pregunta" onclick="mostrarModalPregunta()">TENGO UNA PREGUNTA...</button>
             </div>
         </div>
@@ -101,7 +106,6 @@
 
     <div id="overlay-playlist" class="overlay-clean" style="display:none;">
         <button class="btn-cerrar-clean" onclick="cerrarModoLectura('overlay-playlist')">✖</button>
-        
         <div class="container-vertical">
             <div class="caja-glass texto-box" style="text-align: center; margin-bottom: 20px;">
                 <p class="pixel-text" style="color: #ff9ebd; font-size: 14px; margin: 0;">Pensando en ti con..🎧</p>
@@ -113,7 +117,6 @@
     </div>
 
     <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
-        
         <div id="modal-pregunta" class="popup-pixel-art" style="display:none;">
             <p>Después de leer<br>todo esto...</p>
             <h2 style="color: #ff69b4; margin: 15px 0; line-height: 1.5;">¿Quieres ser mi San Valentín? 💖</h2>
@@ -129,13 +132,20 @@
             <p style="margin: 15px 0; font-family: 'Courier Prime'; font-weight: bold;">Te amo infinito.</p>
             <button class="btn-si" style="width: 100%; margin-top: 10px;" onclick="volverAlEscritorio()">VOLVER AL ESCRITORIO</button>
         </div>
-
     </div>
 
     <script>
-        // 1. GESTIÓN DE VENTANAS DEL ESCRITORIO
+        // --- 0. INICIO ---
+        function entrarAlSistema() {
+            const pantallaInicio = document.getElementById('pantalla-inicio');
+            pantallaInicio.style.opacity = '0'; // Efecto desvanecer
+            setTimeout(() => {
+                pantallaInicio.style.display = 'none'; // Quitar por completo
+            }, 800);
+        }
+
+        // --- 1. ESCRITORIO ---
         function abrirVentana(id) {
-            // Cierra otras ventanas abiertas
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
@@ -143,47 +153,35 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // 2. GESTIÓN DE MODO LECTURA (Limpia la pantalla)
+        // --- 2. MODOS DE LECTURA ---
         function abrirModoLectura(idOverlay) {
-            // OCULTA EL ESCRITORIO (Esto hace que se vea solo el fondo)
             document.getElementById('escritorio').style.display = 'none';
-            // Muestra el overlay (Carta o Playlist)
             document.getElementById(idOverlay).style.display = 'flex';
         }
-
         function cerrarModoLectura(idOverlay) {
-            // Cierra el overlay
             document.getElementById(idOverlay).style.display = 'none';
-            // Vuelve a mostrar el escritorio
             document.getElementById('escritorio').style.display = 'flex';
-            // Cierra las ventanitas pixel para empezar limpio
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
 
-        // 3. LÓGICA DE SAN VALENTÍN
+        // --- 3. SAN VALENTÍN ---
         function mostrarModalPregunta() {
             document.getElementById('modal-backdrop').style.display = 'flex';
             document.getElementById('modal-pregunta').style.display = 'block';
         }
-
         function aceptarValentin() {
             document.getElementById('modal-pregunta').style.display = 'none';
             document.getElementById('modal-exito').style.display = 'block';
-            // Aquí podrías agregar efecto de confetti si quisieras
         }
-
         function volverAlEscritorio() {
-            // Resetea todo
             document.getElementById('modal-backdrop').style.display = 'none';
             document.getElementById('modal-exito').style.display = 'none';
             document.getElementById('overlay-carta').style.display = 'none';
             document.getElementById('escritorio').style.display = 'flex';
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
-
         function esquivar() {
             const btn = document.getElementById('btn-no');
-            // Mueve el botón aleatoriamente dentro de la ventana visible
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 100);
             btn.style.position = 'fixed';

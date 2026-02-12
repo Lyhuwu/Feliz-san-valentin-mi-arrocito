@@ -1,186 +1,148 @@
-/* --- GENERAL --- */
+/* --- BASE --- */
 body {
     margin: 0;
-    font-family: 'Courier Prime', monospace; /* Fuente tipo carta */
+    padding: 0;
     background: url('assets/fondo-carta.gif') no-repeat center center fixed;
     background-size: cover;
+    font-family: 'Courier Prime', monospace;
     height: 100vh;
     overflow: hidden;
 }
 
 /* --- ESCRITORIO --- */
 .escritorio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    padding-top: 20px;
-}
-
-/* Burbuja Flotante (Arriba) */
-.burbuja-mensaje {
-    background: white;
-    border: 2px solid black;
-    padding: 10px 15px;
-    font-family: 'Press Start 2P', cursive; /* Pixel font */
-    font-size: 10px;
-    line-height: 1.5;
-    text-align: left;
-    max-width: 200px;
-    margin-bottom: 30px; /* Separación de los iconos */
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+    width: 100%; height: 100%;
     position: relative;
-    z-index: 10;
-}
-/* Flechita de la burbuja apuntando al icono */
-.burbuja-mensaje::after {
-    content: ''; position: absolute;
-    bottom: -10px; left: 20px;
-    border-width: 10px 10px 0; border-style: solid;
-    border-color: white transparent;
-    display: block; width: 0;
-}
-.burbuja-mensaje::before { /* Borde negro de la flecha */
-    content: ''; position: absolute;
-    bottom: -13px; left: 18px;
-    border-width: 12px 12px 0; border-style: solid;
-    border-color: black transparent;
-    display: block; width: 0; z-index: -1;
+    display: flex; flex-direction: column; align-items: center; padding-top: 30px;
 }
 
-.fila-iconos {
-    display: flex; gap: 40px;
-}
-.icono-escritorio {
-    display: flex; flex-direction: column; align-items: center;
-    cursor: pointer; width: 80px;
-}
-.icono-escritorio img { width: 60px; height: 60px; object-fit: contain; }
-.icono-escritorio p {
-    background: rgba(0,0,0,0.6); color: white;
-    padding: 3px 5px; border-radius: 5px; margin-top: 5px;
-    font-size: 12px; font-family: sans-serif; font-weight: bold;
+.burbuja-mensaje {
+    background: white; border: 2px solid black; padding: 10px;
+    font-family: 'Press Start 2P', cursive; font-size: 10px;
+    max-width: 200px; text-align: center; margin-bottom: 20px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
 }
 
-/* --- VENTANAS RETRO (Rosa Pixel) --- */
-.ventana-retro {
+.fila-iconos { display: flex; gap: 40px; }
+.icono-app { display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 80px; }
+.icono-app img { width: 60px; height: 60px; object-fit: contain; }
+.icono-app p { 
+    background: black; color: white; padding: 2px 5px; 
+    font-family: 'Press Start 2P'; font-size: 8px; margin-top: 5px; 
+}
+
+/* --- VENTANAS PIXEL ART (ROSA) --- */
+.ventana-pixel {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 300px;
     background: #e0e0e0;
-    border: 3px solid black;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-    z-index: 50;
-    font-family: 'Press Start 2P', cursive;
+    border: 2px solid black;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
+    z-index: 10;
 }
-.barra-titulo-retro {
-    background: #ff8fa3; /* Rosa de la captura */
-    color: white; padding: 8px;
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 3px solid black;
+.barra-titulo {
+    background: #ff9ebd; /* Rosa Screenshot */
+    padding: 8px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid black; font-family: 'Press Start 2P'; font-size: 10px; color: white;
+    text-shadow: 1px 1px 0 black;
 }
-.barra-titulo-retro span { font-size: 12px; text-transform: lowercase; }
-.btn-cerrar-retro {
-    background: #ff4d4d; color: white; border: 2px solid white;
-    font-family: inherit; font-size: 10px; cursor: pointer; padding: 2px 5px;
-    box-shadow: 2px 2px 0 black;
+.btn-x {
+    background: #ff4d4d; color: white; border: 1px solid white; 
+    border-right: 1px solid black; border-bottom: 1px solid black;
+    cursor: pointer; font-family: 'Press Start 2P'; font-size: 8px;
 }
-.contenido-retro {
-    background: #e6e6e6; padding: 20px; text-align: center;
-}
-.titulo-pixel { font-size: 12px; margin-bottom: 20px; color: #333; }
-.grid-iconos {
-    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;
-}
-.item-pixel { cursor: pointer; width: 80px; text-align: center; }
-.item-pixel img { width: 40px; height: 40px; object-fit: contain; }
-.item-pixel p { font-size: 9px; margin-top: 5px; line-height: 1.2; }
+.contenido-pixel { padding: 20px; text-align: center; }
+.pixel-text { font-family: 'Press Start 2P'; font-size: 10px; margin-bottom: 20px; }
+.grid-pixel { display: flex; justify-content: space-around; gap: 10px; }
+.item-pixel { cursor: pointer; width: 70px; }
+.item-pixel img { width: 40px; height: 40px; }
+.item-pixel p { font-size: 9px; margin-top: 5px; font-weight: bold; }
 
-
-/* --- OVERLAYS FULLSCREEN (Estilo Glassy Oscuro) --- */
-.overlay-fullscreen {
+/* --- OVERLAY CLEAN (CARTA/PLAYLIST) --- */
+/* Este es el que hace que se vea SOLO el fondo y el contenido */
+.overlay-clean {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    /* Fondo oscuro semi-transparente como en la foto */
-    background: rgba(20, 10, 40, 0.85);
-    backdrop-filter: blur(2px);
+    /* Fondo transparente, porque ocultamos el escritorio con JS */
+    background: transparent; 
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding-top: 40px;
     z-index: 100;
-    display: flex; flex-direction: column; align-items: center;
-    padding-top: 60px; /* Espacio para la X */
     overflow-y: auto;
 }
 
-.btn-cerrar-overlay {
-    position: absolute; top: 20px; right: 20px;
-    background: #ff6b81; color: white; border: none;
-    width: 30px; height: 30px; border-radius: 50%;
-    font-weight: bold; cursor: pointer; z-index: 101;
-    font-family: sans-serif;
-}
-
-/* Contenedor Carta */
-.contenedor-carta { width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; }
-
-/* Caja Video */
-.caja-media {
-    background: black; border-radius: 15px; overflow: hidden;
-    border: 1px solid #444; height: 220px;
-}
-
-/* Caja Texto (Azul oscuro gradiente) */
-.caja-texto {
-    background: linear-gradient(180deg, #1e2a38 0%, #111 100%);
-    border-radius: 15px; padding: 20px;
-    color: #e0e0e0; border: 1px solid #333;
-    font-family: 'Courier Prime', monospace;
-    position: relative;
-    padding-bottom: 60px; /* Espacio para el botón */
-}
-.saludo { color: #fff; font-size: 1.2em; margin-bottom: 10px; }
-.cuerpo { font-size: 0.95em; line-height: 1.6; color: #ccc; }
-
-/* Botón "TENGO UNA PREGUNTA" */
-.btn-lanzar-pregunta {
-    display: block; width: 80%; margin: 20px auto 0;
+.btn-cerrar-clean {
+    position: fixed; top: 20px; right: 20px;
     background: #ff6b81; color: white; border: 2px solid white;
-    padding: 10px; font-family: 'Courier Prime', monospace;
-    font-weight: bold; cursor: pointer; text-transform: uppercase;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
-    /* Efecto "Botón pegado abajo" de la foto */
-    position: relative; bottom: -10px;
+    width: 30px; height: 30px; border-radius: 50%; 
+    font-weight: bold; cursor: pointer; z-index: 101;
 }
 
-/* --- POPUP SORPRESA (Pixel Art Rosa) --- */
-.popup-pixel {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background: #ffe4e1; /* Fondo rosita claro */
-    border: 4px solid #ff69b4; /* Borde rosa fuerte */
-    padding: 20px; width: 280px; text-align: center;
-    font-family: 'Press Start 2P', cursive;
-    box-shadow: 0 0 0 4px white, 0 0 20px rgba(255,105,180, 0.8); /* Doble borde y glow */
+.container-vertical {
+    width: 90%; max-width: 450px;
+    display: flex; flex-direction: column; gap: 20px;
+    padding-bottom: 50px;
+}
+
+/* CAJAS GLASS (Estilo Screenshot 2 y 3) */
+.caja-glass {
+    background: rgba(0, 0, 0, 0.6); /* Oscuro translúcido */
+    backdrop-filter: blur(5px); /* Desenfoque leve */
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.video-box { height: 220px; padding: 10px; }
+.video-box video { border-radius: 10px; }
+
+.texto-box { text-align: left; }
+.typewriter { font-family: 'Courier Prime'; font-size: 14px; line-height: 1.5; }
+
+/* Botón "Tengo una pregunta" */
+.btn-pregunta {
+    display: block; width: 100%; margin-top: 20px;
+    background: rgba(255, 105, 180, 0.3); border: 2px solid #ff69b4;
+    color: white; padding: 10px; font-family: 'Courier Prime';
+    cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+}
+.btn-pregunta:hover { background: #ff69b4; color: black; }
+
+/* --- MODALES / POPUPS (Estilo Pixel Rosa) --- */
+.modal-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); /* Oscurece la carta atrás */
     z-index: 200;
-}
-.texto-pixel { font-size: 12px; color: black; margin-bottom: 15px; line-height: 1.5; }
-.pregunta-pixel { font-size: 12px; color: #ff69b4; margin-bottom: 20px; line-height: 1.5; }
-
-.botones-pixel { display: flex; justify-content: center; gap: 15px; }
-.btn-si-pixel {
-    background: #ff69b4; color: white; border: 2px solid white;
-    padding: 10px; font-family: inherit; font-size: 10px; cursor: pointer;
-    box-shadow: 4px 4px 0 black;
-}
-.btn-no-pixel {
-    background: #999; color: white; border: 2px solid white;
-    padding: 10px; font-family: inherit; font-size: 10px; cursor: pointer;
-    box-shadow: 4px 4px 0 black;
+    align-items: center; justify-content: center;
 }
 
-/* --- ESTILOS PLAYLIST --- */
-.contenedor-playlist { width: 90%; max-width: 400px; }
-.caja-texto-playlist {
-    background: linear-gradient(180deg, #1e2a38 0%, #111 100%);
-    border-radius: 15px; padding: 20px;
-    border: 1px solid #333; text-align: center;
+.popup-pixel-art {
+    background: #ffe4e1; /* Rosa claro */
+    border: 4px solid #ff69b4; /* Rosa fuerte */
+    padding: 25px; width: 300px; text-align: center;
+    font-family: 'Press Start 2P'; font-size: 10px;
+    box-shadow: 0 0 0 4px white, 0 10px 20px rgba(0,0,0,0.5); /* Doble borde */
+    animation: popIn 0.3s ease;
 }
-.titulo-playlist {
-    font-family: 'Press Start 2P', cursive; color: #ff69b4; font-size: 12px;
-    margin-bottom: 20px; letter-spacing: 1px;
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.botones-row { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+
+.btn-si {
+    background: #ff69b4; color: white; border: none;
+    padding: 10px 15px; font-family: inherit; font-size: 10px;
+    cursor: pointer; box-shadow: 4px 4px 0 black;
+    text-transform: uppercase;
+}
+.btn-si:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 black; }
+
+.btn-no {
+    background: #999; color: white; border: none;
+    padding: 10px 15px; font-family: inherit; font-size: 10px;
+    cursor: pointer; box-shadow: 4px 4px 0 black;
 }

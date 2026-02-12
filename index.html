@@ -13,11 +13,14 @@
         <div class="contenido-inicio">
             <h1 class="titulo-intro">Para mi dulce,<br>dulce amada💖</h1>
             <p class="subtitulo-intro">Hecho con mucho amor y cariño.💌</p>
-            <button class="btn-entrar" onclick="entrarAlSistema()">▶ CLICK AQUÍ</button>
+            
+            <button class="btn-entrar" onclick="iniciarSistema()">
+                ▶ CLICK AQUÍ
+            </button>
         </div>
     </div>
 
-    <div id="escritorio" class="escritorio">
+    <div id="escritorio" class="escritorio" style="display: none;">
         
         <div class="burbuja-comic">
             Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌
@@ -99,6 +102,7 @@
                 </p>
                 <br>
                 <p class="typewriter">Te amo, siempre.</p>
+                
                 <button class="btn-pregunta" onclick="mostrarModalPregunta()">TENGO UNA PREGUNTA...</button>
             </div>
         </div>
@@ -117,6 +121,7 @@
     </div>
 
     <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
+        
         <div id="modal-pregunta" class="popup-pixel-art" style="display:none;">
             <p>Después de leer<br>todo esto...</p>
             <h2 style="color: #ff69b4; margin: 15px 0; line-height: 1.5;">¿Quieres ser mi San Valentín? 💖</h2>
@@ -132,19 +137,25 @@
             <p style="margin: 15px 0; font-family: 'Courier Prime'; font-weight: bold;">Te amo infinito.</p>
             <button class="btn-si" style="width: 100%; margin-top: 10px;" onclick="volverAlEscritorio()">VOLVER AL ESCRITORIO</button>
         </div>
+
     </div>
 
     <script>
         // --- 0. INICIO ---
-        function entrarAlSistema() {
+        function iniciarSistema() {
             const pantallaInicio = document.getElementById('pantalla-inicio');
-            pantallaInicio.style.opacity = '0'; // Efecto desvanecer
+            const escritorio = document.getElementById('escritorio');
+            
+            // Efecto desvanecer
+            pantallaInicio.style.opacity = '0';
+            
             setTimeout(() => {
-                pantallaInicio.style.display = 'none'; // Quitar por completo
+                pantallaInicio.style.display = 'none'; // Quitar inicio
+                escritorio.style.display = 'flex';     // MOSTRAR ESCRITORIO
             }, 800);
         }
 
-        // --- 1. ESCRITORIO ---
+        // --- 1. VENTANAS ---
         function abrirVentana(id) {
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
             document.getElementById(id).style.display = 'block';
@@ -153,18 +164,21 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // --- 2. MODOS DE LECTURA ---
+        // --- 2. MODOS DE LECTURA (LIMPIO) ---
         function abrirModoLectura(idOverlay) {
+            // Ocultamos el escritorio para que no se vea nada atrás
             document.getElementById('escritorio').style.display = 'none';
             document.getElementById(idOverlay).style.display = 'flex';
         }
         function cerrarModoLectura(idOverlay) {
             document.getElementById(idOverlay).style.display = 'none';
+            // Restauramos el escritorio
             document.getElementById('escritorio').style.display = 'flex';
+            // Cerramos las ventanitas pixel para empezar limpio
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
 
-        // --- 3. SAN VALENTÍN ---
+        // --- 3. SAN VALENTIN ---
         function mostrarModalPregunta() {
             document.getElementById('modal-backdrop').style.display = 'flex';
             document.getElementById('modal-pregunta').style.display = 'block';
@@ -174,6 +188,7 @@
             document.getElementById('modal-exito').style.display = 'block';
         }
         function volverAlEscritorio() {
+            // Reinicia todo
             document.getElementById('modal-backdrop').style.display = 'none';
             document.getElementById('modal-exito').style.display = 'none';
             document.getElementById('overlay-carta').style.display = 'none';
@@ -184,9 +199,7 @@
             const btn = document.getElementById('btn-no');
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 100);
-            btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.position = 'fixed'; btn.style.left = x + 'px'; btn.style.top = y + 'px';
             btn.style.zIndex = 1000;
         }
     </script>

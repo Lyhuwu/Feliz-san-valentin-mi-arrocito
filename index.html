@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para Sofi ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Courier+Prime&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
 
     <div id="escritorio" class="escritorio">
         
-        <div class="burbuja-mensaje">
-            <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
+        <div class="burbuja-comic">
+            Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌
         </div>
 
         <div class="fila-iconos">
@@ -69,6 +69,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div id="overlay-carta" class="overlay-clean" style="display:none;">
@@ -103,7 +104,7 @@
         
         <div class="container-vertical">
             <div class="caja-glass texto-box" style="text-align: center; margin-bottom: 20px;">
-                <p class="pixel-text" style="color: #ff9ebd; font-size: 14px;">Pensando en ti con..🎧</p>
+                <p class="pixel-text" style="color: #ff9ebd; font-size: 14px; margin: 0;">Pensando en ti con..🎧</p>
             </div>
             <div class="caja-glass spotify-box">
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -115,7 +116,7 @@
         
         <div id="modal-pregunta" class="popup-pixel-art" style="display:none;">
             <p>Después de leer<br>todo esto...</p>
-            <h2 style="color: #ff69b4; margin: 15px 0;">¿Quieres ser mi San Valentín? 💖</h2>
+            <h2 style="color: #ff69b4; margin: 15px 0; line-height: 1.5;">¿Quieres ser mi San Valentín? 💖</h2>
             <div class="botones-row">
                 <button class="btn-si" onclick="aceptarValentin()">¡SÍ,<br>QUIERO!</button>
                 <button id="btn-no" class="btn-no" onmouseover="esquivar()" onclick="esquivar()">MMM, NO<br>SÉ</button>
@@ -126,15 +127,15 @@
             <div style="font-size: 24px; margin-bottom: 10px;">🎉🥰🎉</div>
             <h2 style="color: #ff69b4; text-transform: uppercase; line-height: 1.5;">¡Sabía que dirías<br>que sí!</h2>
             <p style="margin: 15px 0; font-family: 'Courier Prime'; font-weight: bold;">Te amo infinito.</p>
-            <button class="btn-si" style="width: 100%;" onclick="volverAlEscritorio()">VOLVER AL ESCRITORIO</button>
+            <button class="btn-si" style="width: 100%; margin-top: 10px;" onclick="volverAlEscritorio()">VOLVER AL ESCRITORIO</button>
         </div>
 
     </div>
 
     <script>
-        // 1. SISTEMA DE VENTANAS DEL ESCRITORIO
+        // 1. GESTIÓN DE VENTANAS DEL ESCRITORIO
         function abrirVentana(id) {
-            // Cierra otras ventanas primero
+            // Cierra otras ventanas abiertas
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
@@ -142,19 +143,20 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // 2. SISTEMA DE "CLEAN VIEW" (OCULTAR ESCRITORIO)
+        // 2. GESTIÓN DE MODO LECTURA (Limpia la pantalla)
         function abrirModoLectura(idOverlay) {
-            // Ocultamos el escritorio completamente
+            // OCULTA EL ESCRITORIO (Esto hace que se vea solo el fondo)
             document.getElementById('escritorio').style.display = 'none';
-            // Mostramos el overlay deseado
+            // Muestra el overlay (Carta o Playlist)
             document.getElementById(idOverlay).style.display = 'flex';
         }
 
         function cerrarModoLectura(idOverlay) {
+            // Cierra el overlay
             document.getElementById(idOverlay).style.display = 'none';
-            // Volvemos a mostrar el escritorio
-            document.getElementById('escritorio').style.display = 'block';
-            // Restauramos estado inicial de ventanas si quieres
+            // Vuelve a mostrar el escritorio
+            document.getElementById('escritorio').style.display = 'flex';
+            // Cierra las ventanitas pixel para empezar limpio
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
 
@@ -162,30 +164,32 @@
         function mostrarModalPregunta() {
             document.getElementById('modal-backdrop').style.display = 'flex';
             document.getElementById('modal-pregunta').style.display = 'block';
-            document.getElementById('modal-exito').style.display = 'none';
         }
 
         function aceptarValentin() {
             document.getElementById('modal-pregunta').style.display = 'none';
             document.getElementById('modal-exito').style.display = 'block';
-            // Efecto confetti opcional aquí
+            // Aquí podrías agregar efecto de confetti si quisieras
         }
 
         function volverAlEscritorio() {
-            // Cierra todo y regresa al inicio
+            // Resetea todo
             document.getElementById('modal-backdrop').style.display = 'none';
+            document.getElementById('modal-exito').style.display = 'none';
             document.getElementById('overlay-carta').style.display = 'none';
-            document.getElementById('escritorio').style.display = 'block';
+            document.getElementById('escritorio').style.display = 'flex';
             document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
 
         function esquivar() {
             const btn = document.getElementById('btn-no');
+            // Mueve el botón aleatoriamente dentro de la ventana visible
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 100);
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
+            btn.style.zIndex = 1000;
         }
     </script>
 </body>

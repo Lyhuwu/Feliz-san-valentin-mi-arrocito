@@ -5,142 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Sofi ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Courier+Prime&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="escritorio">
         
-        <div class="contenedor-iconos">
-            <div class="icono-escritorio" onclick="abrirCarpeta('ventana-corazon')">
+        <div class="burbuja-mensaje">
+            <p>Hola mi corazón,<br>esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
+        </div>
+
+        <div class="fila-iconos">
+            <div class="icono-escritorio" onclick="abrirVentana('ventana-corazon')">
                 <img src="assets/cora.gif" alt="Corazón">
                 <p>Corazón.exe</p>
             </div>
-            <div class="icono-escritorio" onclick="abrirCarpeta('ventana-juegos')">
+            <div class="icono-escritorio" onclick="abrirVentana('ventana-juegos')">
                 <img src="assets/icon-game.gif" alt="Juegos">
                 <p>Juegos.exe</p>
             </div>
         </div>
-
-        <div class="burbuja-inicio">
-            <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
-        </div>
-
     </div>
 
-    <div id="ventana-corazon" class="ventana-carpeta" style="display:none;">
-        <div class="barra-titulo">
-            <span>❤️ Archivos de Amor</span>
-            <button class="btn-cerrar-carpeta" onclick="cerrarCarpeta('ventana-corazon')">✖</button>
+    <div id="ventana-corazon" class="ventana-retro" style="display:none;">
+        <div class="barra-titulo-retro">
+            <span>corazon.exe</span>
+            <button class="btn-cerrar-retro" onclick="cerrarVentana('ventana-corazon')">X</button>
         </div>
-        <div class="contenido-carpeta">
-            <div class="icono-archivo" onclick="abrirOverlay('overlay-carta')">
-                <img src="assets/icon-heart.gif" alt="Carta">
-                <p>Carta.txt</p>
-            </div>
-            <div class="icono-archivo" onclick="abrirOverlay('overlay-playlist')">
-                <img src="assets/icon-music.gif" alt="Playlist">
-                <p>Playlist</p>
-            </div>
-            <div class="icono-archivo" onclick="window.location.href='universo.html'">
-                <img src="assets/universo.gif" alt="Universo">
-                <p>Galaxia.exe</p>
+        <div class="contenido-retro">
+            <p class="titulo-pixel">Lo que hay dentro...</p>
+            <div class="grid-iconos">
+                <div class="item-pixel" onclick="abrirOverlay('overlay-carta')">
+                    <img src="assets/icon-heart.gif" alt="Carta">
+                    <p>Cartita con cariño💖</p>
+                </div>
+                <div class="item-pixel" onclick="abrirOverlay('overlay-playlist')">
+                    <img src="assets/icon-music.gif" alt="Playlist">
+                    <p>Playlist</p>
+                </div>
+                <div class="item-pixel" onclick="window.location.href='universo.html'">
+                    <img src="assets/universo.gif" alt="Universo">
+                    <p>El centro de MI universo</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="ventana-juegos" class="ventana-carpeta" style="display:none;">
-        <div class="barra-titulo">
-            <span>🎮 Arcade Zone</span>
-            <button class="btn-cerrar-carpeta" onclick="cerrarCarpeta('ventana-juegos')">✖</button>
+    <div id="ventana-juegos" class="ventana-retro" style="display:none;">
+        <div class="barra-titulo-retro">
+            <span>juegos.exe</span>
+            <button class="btn-cerrar-retro" onclick="cerrarVentana('ventana-juegos')">X</button>
         </div>
-        <div class="contenido-carpeta">
-            <div class="icono-archivo" onclick="window.location.href='monkys.html'">
-                <img src="assets/icon-monkey.gif" alt="Monkys">
-                <p>Monkys.exe</p>
-            </div>
-            <div class="icono-archivo" onclick="window.location.href='suerte.html'">
-                <img src="assets/suerte.gif" alt="Suerte">
-                <p>Suerte.exe</p>
+        <div class="contenido-retro">
+            <p class="titulo-pixel">¡A jugar! 🎮</p>
+            <div class="grid-iconos">
+                <div class="item-pixel" onclick="window.location.href='suerte.html'">
+                    <img src="assets/suerte.gif" alt="Suerte">
+                    <p>Descubre tu fortuna</p>
+                </div>
+                <div class="item-pixel" onclick="window.location.href='monkys.html'">
+                    <img src="assets/icon-monkey.gif" alt="Monkey">
+                    <p>Ayuda al monito</p>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="overlay-carta" class="overlay-fullscreen" style="display:none;">
-        
         <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-carta')">✖</button>
 
-        <div class="scroll-container">
+        <div class="contenedor-carta">
             <div class="caja-media">
-                <video width="100%" height="100%" controls style="border-radius: 10px;">
+                 <video width="100%" height="100%" controls style="border-radius: 10px;">
                     <source src="assets/video.mp4" type="video/mp4">
                     Tu navegador no soporta el video.
                 </video>
             </div>
 
             <div class="caja-texto">
-                <h1 class="titulo-carta">Mi niña hermosa,</h1>
-                <p class="cuerpo-carta">
-                    Hoy quiero pausar el tiempo solo para decirte cuánto te amo...<br><br>
+                <p class="saludo">Mi amor,</p>
+                <p class="cuerpo">
+                    Hoy quiero pausar el tiempo...<br><br>
                     (ESCRIBE AQUÍ TU CARTA LARGA...)<br><br>
-                    Eres mi persona favorita en todo el universo.
+                    Te amo, siempre.
                 </p>
+                
+                <button class="btn-lanzar-pregunta" onclick="mostrarSorpresa()">TENGO UNA PREGUNTA...</button>
+            </div>
+        </div>
 
-                <div class="seccion-pregunta">
-                    <p class="pregunta">¿Quieres ser mi San Valentín?</p>
-                    
-                    <div class="botones-cute">
-                        <button class="btn-si" onclick="alert('¡Siiii! Te amo infinito ❤️')">¡Obvio sí! 💖</button>
-                        <button id="btn-no" class="btn-no" onmouseover="moverBoton()" onclick="moverBoton()">Mmm no sé 🐸</button>
-                    </div>
-                </div>
+        <div id="popup-sorpresa" class="popup-pixel" style="display:none;">
+            <p class="texto-pixel">Después de leer<br>todo esto...</p>
+            <p class="pregunta-pixel">¿Quieres ser mi San<br>Valentín? 💖</p>
+            
+            <div class="botones-pixel">
+                <button class="btn-si-pixel" onclick="alert('¡Siiii! Te amo ❤️')">¡SÍ,<br>QUIERO!</button>
+                <button id="btn-no-pixel" class="btn-no-pixel" onmouseover="moverBoton()" onclick="moverBoton()">MMM, NO<br>SÉ</button>
             </div>
         </div>
     </div>
 
     <div id="overlay-playlist" class="overlay-fullscreen" style="display:none;">
-        
         <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-playlist')">✖</button>
 
-        <div class="scroll-container">
-            <div class="caja-texto" style="text-align: center; margin-bottom: 20px;">
-                <h2 style="color: #ffb7b2; margin:0;">Nuestra Playlist 🎵</h2>
-            </div>
-
-            <div class="caja-media spotify-container">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="contenedor-playlist">
+            <div class="caja-texto-playlist">
+                <p class="titulo-playlist">Pensando en ti con..🎧</p>
+                <div class="spotify-wrapper">
+                     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Carpetas
-        function abrirCarpeta(id) {
-            document.querySelectorAll('.ventana-carpeta').forEach(el => el.style.display = 'none');
+        // Ventanas Retro
+        function abrirVentana(id) {
+            document.querySelectorAll('.ventana-retro').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
-        function cerrarCarpeta(id) {
+        function cerrarVentana(id) {
             document.getElementById(id).style.display = 'none';
         }
 
         // Overlays
         function abrirOverlay(id) {
-            cerrarCarpeta('ventana-corazon');
+            cerrarVentana('ventana-corazon');
             document.getElementById(id).style.display = 'flex';
         }
         function cerrarOverlay(id) {
             document.getElementById(id).style.display = 'none';
+            // Ocultar la sorpresa si estaba abierta para la próxima vez
+            document.getElementById('popup-sorpresa').style.display = 'none';
             document.getElementById('ventana-corazon').style.display = 'block';
         }
 
-        // Botón Tramposo
+        // Mostrar la sorpresa de San Valentín
+        function mostrarSorpresa() {
+            document.getElementById('popup-sorpresa').style.display = 'block';
+        }
+
+        // Botón Escurridizo
         function moverBoton() {
-            const btnNo = document.getElementById('btn-no');
-            const x = Math.random() * (window.innerWidth - 120);
+            const btnNo = document.getElementById('btn-no-pixel');
+            // Mover dentro del popup o pantalla (mejor pantalla para que no se salga del cuadrito pequeño)
+            const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 50);
             btnNo.style.position = 'fixed';
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
+            btnNo.style.zIndex = '1000'; // Asegurar que quede encima de todo
         }
     </script>
 </body>

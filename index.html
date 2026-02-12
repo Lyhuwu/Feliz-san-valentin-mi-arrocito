@@ -170,12 +170,16 @@
             document.getElementById('escritorio').style.display = 'none';
             document.getElementById(idOverlay).style.display = 'flex';
         }
+
+        // --- AQUÍ ESTÁ EL CAMBIO QUE PEDISTE ---
         function cerrarModoLectura(idOverlay) {
             document.getElementById(idOverlay).style.display = 'none';
-            // Restauramos el escritorio
+            
+            // 1. Restauramos el escritorio
             document.getElementById('escritorio').style.display = 'flex';
-            // Cerramos las ventanitas pixel para empezar limpio
-            document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
+            
+            // 2. ABRIMOS AUTOMÁTICAMENTE LA CARPETA CORAZÓN
+            document.getElementById('win-corazon').style.display = 'block';
         }
 
         // --- 3. SAN VALENTIN ---
@@ -188,7 +192,7 @@
             document.getElementById('modal-exito').style.display = 'block';
         }
         function volverAlEscritorio() {
-            // Reinicia todo
+            // Reinicia todo y vuelve al escritorio limpio (sin ventanas abiertas)
             document.getElementById('modal-backdrop').style.display = 'none';
             document.getElementById('modal-exito').style.display = 'none';
             document.getElementById('overlay-carta').style.display = 'none';

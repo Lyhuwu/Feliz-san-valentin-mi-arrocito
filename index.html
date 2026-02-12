@@ -9,49 +9,64 @@
 <body>
 
     <div class="escritorio">
-        
-        <div class="bloque-central">
-            <div class="fila-iconos-top">
-                <div class="icono" onclick="abrirVentana('carta')">
-                    <img src="assets/cora.gif" alt="Corazón">
-                    <p>Corazón.exe</p>
-                </div>
-                <div class="icono" onclick="window.location.href='juegos.html'">
-                    <img src="assets/icon-game.gif" alt="Juegos">
-                    <p>Juegos.exe</p>
-                </div>
-            </div>
+        <div class="icono-escritorio" onclick="abrirCarpeta('ventana-corazon')">
+            <img src="assets/cora.gif" alt="Corazón">
+            <p>Corazón.exe</p>
+        </div>
+        <div class="icono-escritorio" onclick="abrirCarpeta('ventana-juegos')">
+            <img src="assets/icon-game.gif" alt="Juegos">
+            <p>Juegos.exe</p>
+        </div>
+    </div>
 
-            <div class="burbuja-texto">
-                <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
+    <div id="ventana-corazon" class="ventana-carpeta" style="display:none;">
+        <div class="barra-titulo">
+            <span>❤️ Archivos de Amor</span>
+            <button class="btn-cerrar" onclick="cerrarCarpeta('ventana-corazon')">✖</button>
+        </div>
+        <div class="contenido-carpeta">
+            <div class="icono-archivo" onclick="abrirVisor()">
+                <img src="assets/icon-heart.gif" alt="Carta">
+                <p>Carta.txt</p>
+            </div>
+            <div class="icono-archivo" onclick="abrirVisor()">
+                <img src="assets/icon-music.gif" alt="Playlist">
+                <p>Playlist.mp3</p>
+            </div>
+            <div class="icono-archivo" onclick="window.location.href='universo.html'">
+                <img src="assets/universo.gif" alt="Universo">
+                <p>MiUniverso.exe</p>
             </div>
         </div>
+    </div>
 
-        <div class="fila-iconos-extra">
-            <div class="icono">
+    <div id="ventana-juegos" class="ventana-carpeta" style="display:none;">
+        <div class="barra-titulo">
+            <span>🎮 Arcade Zone</span>
+            <button class="btn-cerrar" onclick="cerrarCarpeta('ventana-juegos')">✖</button>
+        </div>
+        <div class="contenido-carpeta">
+            <div class="icono-archivo" onclick="window.location.href='monkys.html'">
                 <img src="assets/icon-monkey.gif" alt="Monkys">
                 <p>Monkys.exe</p>
             </div>
-            <div class="icono">
-                <img src="assets/universo.gif" alt="Galaxia">
-                <p>Galaxia.exe</p>
-            </div>
-            <div class="icono">
+            <div class="icono-archivo" onclick="window.location.href='suerte.html'">
                 <img src="assets/suerte.gif" alt="Suerte">
                 <p>Suerte.exe</p>
             </div>
         </div>
-
     </div>
 
-    <div id="ventana-carta" class="ventana" style="display:none;">
-        <div class="contenido-ventana">
-            <button class="boton-cerrar" onclick="cerrarVentana('carta')">✖</button>
+    <div id="visor-overlay" class="overlay-container" style="display:none;">
+        
+        <button class="btn-cerrar-overlay" onclick="cerrarVisor()">✖</button>
+
+        <div class="visor-content">
             
-            <div class="video-container">
+            <div class="caja-video">
                 <iframe 
                     width="100%" 
-                    height="315" 
+                    height="100%" 
                     src="https://www.youtube.com/embed/800abNDR_Ao" 
                     title="YouTube video player" 
                     frameborder="0" 
@@ -60,26 +75,43 @@
                 </iframe>
             </div>
 
-            <div class="texto-carta">
-                <h2>Mi amor,</h2>
+            <div class="caja-texto">
+                <p class="titulo-carta">Mi amor,</p>
                 <p>Hoy quiero pausar el tiempo...</p>
-                <p>(Aquí va tu carta larga...)</p>
+                <br>
+                <p>(ESCRIBE AQUÍ TU CARTA LARGA...)</p>
+                <br>
                 <p>Te amo, siempre.</p>
+                
+                <button class="btn-accion">TENGO UNA PREGUNTA...</button>
             </div>
-            
-            <div class="adornos-carta">
-                <img src="assets/icon-heart.gif" alt="Cartita" width="30">
-                <img src="assets/icon-music.gif" alt="Música" width="30">
-            </div>
+
         </div>
     </div>
 
     <script>
-        function abrirVentana(id) {
-            document.getElementById('ventana-' + id).style.display = 'flex';
+        // Función para abrir las carpetas del escritorio
+        function abrirCarpeta(id) {
+            // Cerramos cualquier otra carpeta abierta
+            document.querySelectorAll('.ventana-carpeta').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
         }
-        function cerrarVentana(id) {
-            document.getElementById('ventana-' + id).style.display = 'none';
+
+        // Función para cerrar carpetas
+        function cerrarCarpeta(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Función para abrir el Visor Especial (Carta/Playlist)
+        function abrirVisor() {
+            // Opcional: Cerrar la carpeta de atrás para limpiar la vista
+            // cerrarCarpeta('ventana-corazon'); 
+            document.getElementById('visor-overlay').style.display = 'flex';
+        }
+
+        // Función para cerrar el Visor
+        function cerrarVisor() {
+            document.getElementById('visor-overlay').style.display = 'none';
         }
     </script>
 </body>

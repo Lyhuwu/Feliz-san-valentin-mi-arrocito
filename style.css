@@ -180,14 +180,19 @@ body {
 
 .barra-titulo {
     background: #ff69b4;
-    padding: 12px;
+    padding: 15px; /* Más espacio vertical */
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid black;
     color: white;
     text-shadow: 2px 2px 0 black;
-    font-size: 11px;
+    
+    /* CAMBIO AQUÍ: LETRA MÁS GRANDE */
+    font-size: 16px; 
+    font-weight: bold;
+    letter-spacing: 1px; /* Un poco de espacio entre letras queda lindo */
+    
     flex-shrink: 0;
 }
 

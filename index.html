@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Sofi ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="intro-screen">
+        <div class="intro-content">
+            <h1>Para mi dulce,<br>dulce amada💖</h1>
+            <p class="subtitle">Hecho con mucho amor y cariño.💖</p>
+            <button id="start-btn" class="pixel-btn" onclick="startExperience()">▶ Cick aquí</button>
+        </div>
+    </section>
+
+    <section id="desktop-screen" style="display: none;">
+        
+        <div class="icons-container">
+            
+            <div class="desktop-icon" onclick="openWindow('sorpresas')">
+                <img src="assets/cora.gif" alt="Cosas">
+                <span>Corazón.exe</span>
+            </div>
+
+            <div class="desktop-icon" onclick="openWindow('juegos')">
+                <img src="assets/icon-game.gif" alt="Juegos"> 
+                <span>Juegos.exe</span>
+            </div>
+            
+            <div class="pixel-bubble">
+                <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
+            </div>
+        </div>
+
+        <div id="window-sorpresas" class="retro-window" style="display: none;">
+            <div class="window-header">
+                <span>corazon.exe</span>
+                <button class="close-btn" onclick="closeWindow('sorpresas')">X</button>
+            </div>
+            <div class="window-content">
+                <p style="text-align:center; margin-bottom:20px;">Lo que hay dentro...</p>
+                <div class="folder-grid">
+                    
+                    <div class="folder-item" onclick="openWindow('carta')">
+                        <img src="assets/icon-heart.gif" alt="Carta">
+                        <span>Cartita con cariño💖</span>
+                    </div>
+                    
+                    <div class="folder-item" onclick="openWindow('playlist')">
+                        <img src="assets/icon-music.gif" alt="Música">
+                        <span>Playlist</span>
+                    </div>
+                    
+                    <a href="https://lyhuwu.github.io/El-centro-de-mi-universo-/" target="_blank" class="folder-item">
+                        <img src="assets/universo.gif" alt="Galaxia">
+                        <span>El centro de MI universo</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="window-juegos" class="retro-window" style="display: none;">
+            <div class="window-header">
+                <span>juegos.exe</span>
+                <button class="close-btn" onclick="closeWindow('juegos')">X</button>
+            </div>
+            <div class="window-content">
+                <p style="text-align:center; margin-bottom:20px;">¡A jugar! 🎮</p>
+                <div class="folder-grid">
+                    
+                    <a href="https://lyhuwu.github.io/Prueba-tu-suerte-mi-corazon/" target="_blank" class="folder-item">
+                        <img src="assets/suerte.gif" alt="Juego">
+                        <span>Descubre tu fortuna</span>
+                    </a>
+
+                    <a href="https://lyhuwu.github.io/Muamuamua/" target="_blank" class="folder-item">
+                        <img src="assets/icon-monkey.gif" alt="Monitos">
+                        <span>Ayuda al monito</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="window-carta" class="full-screen-window gif-bg" style="display: none;">
+            <button class="pretty-close-btn" onclick="closeWindow('carta'); openWindow('sorpresas')">X</button>
+            <div class="full-screen-content">
+                <div class="video-box transparent-box">
+                    <iframe width="100%" height="200" src="https://youtu.be/800abNDR_Ao?si=1bI962Rx1rdfeJQd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="carta-text transparent-box">
+                    <p>Mi amor,</p>
+                    <br>
+                    <p>Hoy quiero pausar el tiempo...</p>
+                    <br>
+                    <p>(ESCRIBE AQUÍ TU CARTA LARGA...)</p>
+                    <br>
+                    <p>Te amo, siempre.</p>
+                    <br><br>
+                    <div style="text-align: center; margin-bottom: 50px;">
+                        <button class="pixel-btn" onclick="mostrarPopupValentine()">Tengo una pregunta...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="window-playlist" class="full-screen-window gif-bg" style="display: none;">
+            
+            <button class="pretty-close-btn" onclick="closeWindow('playlist'); openWindow('sorpresas')">X</button>
+            
+            <div class="full-screen-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+                
+                <div class="transparent-box" style="width: 90%; max-width: 400px; text-align: center;">
+                    <h2 style="color: #ff6b9d; text-shadow: 2px 2px 0 #000; margin-bottom: 20px; font-size:14px;">
+                        Pensando en ti con..🎧
+                    </h2>
+                    
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6h6Yn8KXTEkdK7D1db0RbY?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="valentine-popup" class="valentine-modal" style="display: none;">
+        <div class="popup-box">
+            <div id="step-pregunta">
+                <p>Después de leer todo esto...</p>
+                <h3>¿Quieres ser mi San Valentín? 💖</h3>
+                <div class="modal-buttons">
+                    <button class="pixel-btn yes-btn" onclick="aceptarValentine()">¡SÍ, QUIERO!</button>
+                    <button id="btn-no" class="pixel-btn no-btn" onmouseover="moverBoton()" ontouchstart="moverBoton()">Mmm, no sé</button>
+                </div>
+            </div>
+            <div id="step-respuesta" style="display: none;">
+                <h1 style="font-size:30px; margin:20px 0;">🎉🥰🎉</h1>
+                <h3 style="color:#ff6b9d;">¡SABÍA QUE DIRÍAS QUE SÍ!</h3>
+                <p>Te amo infinito.</p>
+                <br>
+                <button class="pixel-btn" onclick="cerrarPopup(); closeWindow('carta'); openWindow('sorpresas')">
+                    Volver al escritorio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

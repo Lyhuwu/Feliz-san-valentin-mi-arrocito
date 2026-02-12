@@ -1,9 +1,10 @@
 /* =========================================
-   RESET UNIVERSAL
+   RESET (CRUCIAL PARA EL CENTRADO)
    ========================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
+    /* Fondo principal del escritorio */
     background: url('assets/fondo-carta.gif') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Courier Prime', monospace;
@@ -11,44 +12,43 @@ body {
 }
 
 /* =========================================
-   0. PANTALLA DE INICIO (ESTILO CAPTURA)
+   0. PANTALLA DE INICIO (GIF)
    ========================================= */
 .pantalla-inicio {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: url('assets/fondo-carta.gif') no-repeat center center fixed;
+    /* AQUÍ VA TU GIF DE INICIO */
+    background: url('assets/intro.gif') no-repeat center center fixed;
     background-size: cover;
-    z-index: 9999; /* Encima de todo */
+    z-index: 9999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
-    transition: opacity 0.8s ease; /* Transición suave al salir */
+    transition: opacity 0.8s ease;
 }
 
 .titulo-intro {
     font-family: 'Press Start 2P', cursive;
-    color: white; font-size: 18px; line-height: 1.8;
-    text-shadow: 3px 3px 0 black; /* Sombra dura negra */
+    color: #ff69b4; /* Rosa neón */
+    font-size: 18px; line-height: 1.8;
+    text-shadow: 3px 3px 0 black; /* Borde negro fuerte */
     margin-bottom: 20px;
 }
 
 .subtitulo-intro {
     font-family: 'Press Start 2P', cursive;
-    color: #ffd1dc; /* Un rosa clarito */
-    font-size: 10px; margin-bottom: 40px;
+    color: white; font-size: 10px; margin-bottom: 40px;
     text-shadow: 2px 2px 0 black;
 }
 
 .btn-entrar {
-    background: #ff69b4; /* Rosa fuerte */
-    color: white; border: 2px solid white;
+    background: #ff69b4; color: white; border: 2px solid white;
     padding: 15px 20px; font-family: 'Press Start 2P', cursive; font-size: 12px;
-    cursor: pointer; box-shadow: 5px 5px 0 black; /* Sombra botón */
-    text-transform: uppercase;
+    cursor: pointer; box-shadow: 5px 5px 0 black; text-transform: uppercase;
 }
 .btn-entrar:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 black; }
 
 
 /* =========================================
-   1. ESCRITORIO
+   1. ESCRITORIO (FIXED)
    ========================================= */
 .escritorio {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -56,6 +56,7 @@ body {
     z-index: 1;
 }
 
+/* Burbuja Cómic */
 .burbuja-comic {
     position: relative; background: #ffffff; border-radius: 20px;
     padding: 15px 20px; font-family: 'Press Start 2P', cursive; 
@@ -74,6 +75,7 @@ body {
 }
 @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
+/* Iconos */
 .fila-iconos { display: flex; gap: 40px; align-items: flex-end; }
 .icono-app {
     display: flex; flex-direction: column; align-items: center; 
@@ -88,9 +90,7 @@ body {
     border-radius: 8px; font-family: 'Press Start 2P'; font-size: 9px; margin-top: 8px;
 }
 
-/* =========================================
-   VENTANAS PIXEL
-   ========================================= */
+/* Ventanas Pixel */
 .ventana-pixel {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 90%; max-width: 320px; background: #e0e0e0;

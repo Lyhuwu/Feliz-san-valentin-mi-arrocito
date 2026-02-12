@@ -1,5 +1,5 @@
 /* =========================================
-   1. RESET UNIVERSAL (EVITA QUE SE MUEVA TODO)
+   1. RESET UNIVERSAL (EVITA DESBORDES)
    ========================================= */
 * {
     box-sizing: border-box;
@@ -14,7 +14,7 @@ body {
     font-family: 'Courier Prime', monospace;
     height: 100vh;
     width: 100%;
-    overflow: hidden; /* Evita scroll en el escritorio */
+    overflow: hidden; /* Bloquea scroll en el escritorio */
 }
 
 /* =========================================
@@ -37,7 +37,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition: opacity 0.8s ease; /* Efecto desvanecer suave */
+    transition: opacity 0.8s ease;
 }
 
 .titulo-intro {
@@ -75,7 +75,7 @@ body {
    3. ESCRITORIO (FIXED)
    ========================================= */
 .escritorio {
-    position: fixed; /* Fija los iconos para que no bailen */
+    position: fixed; /* Fija los iconos para que no se muevan */
     top: 0;
     left: 0;
     width: 100%;
@@ -155,7 +155,7 @@ body {
 
 
 /* =========================================
-   4. VENTANAS RETRO (VERSIÓN GRANDE)
+   4. VENTANAS RETRO (VERSIÓN GRANDE & ICONOS GIGANTES)
    ========================================= */
 .ventana-pixel {
     position: fixed;
@@ -163,18 +163,17 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* TAMAÑO AUMENTADO PARA TAPAR EL FONDO */
+    /* TAMAÑO GRANDE PARA TAPAR EL FONDO */
     width: 95%;        /* Casi todo el ancho del móvil */
-    max-width: 450px;  /* Tope en pantallas grandes */
-    min-height: 420px; /* Altura suficiente para cubrir iconos */
+    max-width: 450px;  
+    min-height: 420px; /* Altura suficiente para cubrir iconos traseros */
     
     background: #e0e0e0;
     border: 3px solid black;
-    box-shadow: 15px 15px 0 rgba(0,0,0,0.5); /* Sombra grande */
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.5); 
     z-index: 50;
     font-family: 'Press Start 2P', cursive;
     
-    /* Flex para organizar el contenido interior */
     display: flex;
     flex-direction: column;
 }
@@ -206,7 +205,7 @@ body {
 .contenido-pixel {
     padding: 30px 15px;
     text-align: center;
-    flex-grow: 1; /* Ocupa el resto del espacio */
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -220,17 +219,19 @@ body {
     line-height: 1.5;
 }
 
+/* REJILLA DE ICONOS INTERNOS */
 .grid-pixel {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px; /* Espacio entre carpetas internas */
+    gap: 25px; 
     width: 100%;
 }
 
+/* ICONO INDIVIDUAL (GIGANTE) */
 .item-pixel {
     cursor: pointer;
-    width: 90px;
+    width: 110px; /* Ancho aumentado */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -239,15 +240,18 @@ body {
 .item-pixel:active { transform: scale(0.95); }
 
 .item-pixel img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 8px;
+    width: 75px; /* IMAGEN GIGANTE */
+    height: 75px;
+    margin-bottom: 12px;
     object-fit: contain;
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2));
 }
+
 .item-pixel p {
-    font-size: 8px;
+    font-size: 10px; /* Texto más grande */
     font-weight: bold;
     color: #333;
+    line-height: 1.4;
 }
 
 
@@ -260,10 +264,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent; /* Fondo transparente */
+    background: transparent; /* Transparente para ver el fondo limpio */
     display: flex;
     flex-direction: column;
-    align-items: center; /* CENTRADO HORIZONTAL */
+    align-items: center; /* Centrado horizontal */
     padding-top: 60px;
     z-index: 100;
     overflow-y: auto; /* Permite scroll */
@@ -292,15 +296,15 @@ body {
 .container-vertical {
     width: 90%;
     max-width: 400px;
-    margin: 0 auto 50px auto; /* Margen automático para centrar */
+    margin: 0 auto 50px auto; /* Centrado automático */
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Cajas Glass (Contenedores oscuros) */
+/* Cajas Glass */
 .caja-glass {
-    background: rgba(20, 20, 35, 0.85); /* Fondo oscuro elegante */
+    background: rgba(20, 20, 35, 0.85); /* Oscuro elegante */
     backdrop-filter: blur(8px);
     border-radius: 20px;
     padding: 20px;
@@ -359,7 +363,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85); /* Fondo oscuro detrás del modal */
+    background: rgba(0,0,0,0.85);
     z-index: 200;
     display: flex;
     align-items: center;
@@ -367,7 +371,7 @@ body {
 }
 
 .popup-pixel-art {
-    background: #ffe4e1; /* Rosa claro */
+    background: #ffe4e1;
     border: 4px solid #ff69b4;
     padding: 30px 20px;
     width: 90%;
@@ -375,7 +379,7 @@ body {
     text-align: center;
     font-family: 'Press Start 2P';
     font-size: 11px;
-    box-shadow: 0 0 0 4px white, 0 15px 30px rgba(0,0,0,0.6); /* Doble borde */
+    box-shadow: 0 0 0 4px white, 0 15px 30px rgba(0,0,0,0.6);
     animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 

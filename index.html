@@ -9,152 +9,183 @@
 </head>
 <body>
 
-    <div class="escritorio">
+    <div id="escritorio" class="escritorio">
         
         <div class="burbuja-mensaje">
-            <p>Hola mi corazón,<br>esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
+            <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
         </div>
 
         <div class="fila-iconos">
-            <div class="icono-escritorio" onclick="abrirVentana('ventana-corazon')">
+            <div class="icono-app" onclick="abrirVentana('win-corazon')">
                 <img src="assets/cora.gif" alt="Corazón">
                 <p>Corazón.exe</p>
             </div>
-            <div class="icono-escritorio" onclick="abrirVentana('ventana-juegos')">
+            <div class="icono-app" onclick="abrirVentana('win-juegos')">
                 <img src="assets/icon-game.gif" alt="Juegos">
                 <p>Juegos.exe</p>
             </div>
         </div>
-    </div>
 
-    <div id="ventana-corazon" class="ventana-retro" style="display:none;">
-        <div class="barra-titulo-retro">
-            <span>corazon.exe</span>
-            <button class="btn-cerrar-retro" onclick="cerrarVentana('ventana-corazon')">X</button>
+        <div id="win-corazon" class="ventana-pixel" style="display:none;">
+            <div class="barra-titulo">
+                <span>corazon.exe</span>
+                <button class="btn-x" onclick="cerrarVentana('win-corazon')">X</button>
+            </div>
+            <div class="contenido-pixel">
+                <p class="pixel-text">Lo que hay dentro...</p>
+                <div class="grid-pixel">
+                    <div class="item-pixel" onclick="abrirModoLectura('overlay-carta')">
+                        <img src="assets/icon-heart.gif" alt="Carta">
+                        <p>Cartita con cariño💖</p>
+                    </div>
+                    <div class="item-pixel" onclick="abrirModoLectura('overlay-playlist')">
+                        <img src="assets/icon-music.gif" alt="Playlist">
+                        <p>Playlist</p>
+                    </div>
+                    <div class="item-pixel" onclick="window.location.href='universo.html'">
+                        <img src="assets/universo.gif" alt="Universo">
+                        <p>El centro de MI universo</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contenido-retro">
-            <p class="titulo-pixel">Lo que hay dentro...</p>
-            <div class="grid-iconos">
-                <div class="item-pixel" onclick="abrirOverlay('overlay-carta')">
-                    <img src="assets/icon-heart.gif" alt="Carta">
-                    <p>Cartita con cariño💖</p>
-                </div>
-                <div class="item-pixel" onclick="abrirOverlay('overlay-playlist')">
-                    <img src="assets/icon-music.gif" alt="Playlist">
-                    <p>Playlist</p>
-                </div>
-                <div class="item-pixel" onclick="window.location.href='universo.html'">
-                    <img src="assets/universo.gif" alt="Universo">
-                    <p>El centro de MI universo</p>
+
+        <div id="win-juegos" class="ventana-pixel" style="display:none;">
+            <div class="barra-titulo">
+                <span>juegos.exe</span>
+                <button class="btn-x" onclick="cerrarVentana('win-juegos')">X</button>
+            </div>
+            <div class="contenido-pixel">
+                <p class="pixel-text">¡A jugar! 🎮</p>
+                <div class="grid-pixel">
+                    <div class="item-pixel" onclick="window.location.href='suerte.html'">
+                        <img src="assets/suerte.gif" alt="Suerte">
+                        <p>Descubre tu fortuna</p>
+                    </div>
+                    <div class="item-pixel" onclick="window.location.href='monkys.html'">
+                        <img src="assets/icon-monkey.gif" alt="Monkys">
+                        <p>Ayuda al monito</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="ventana-juegos" class="ventana-retro" style="display:none;">
-        <div class="barra-titulo-retro">
-            <span>juegos.exe</span>
-            <button class="btn-cerrar-retro" onclick="cerrarVentana('ventana-juegos')">X</button>
-        </div>
-        <div class="contenido-retro">
-            <p class="titulo-pixel">¡A jugar! 🎮</p>
-            <div class="grid-iconos">
-                <div class="item-pixel" onclick="window.location.href='suerte.html'">
-                    <img src="assets/suerte.gif" alt="Suerte">
-                    <p>Descubre tu fortuna</p>
-                </div>
-                <div class="item-pixel" onclick="window.location.href='monkys.html'">
-                    <img src="assets/icon-monkey.gif" alt="Monkey">
-                    <p>Ayuda al monito</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="overlay-carta" class="overlay-fullscreen" style="display:none;">
-        <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-carta')">✖</button>
-
-        <div class="contenedor-carta">
-            <div class="caja-media">
-                 <video width="100%" height="100%" controls style="border-radius: 10px;">
+    <div id="overlay-carta" class="overlay-clean" style="display:none;">
+        <button class="btn-cerrar-clean" onclick="cerrarModoLectura('overlay-carta')">✖</button>
+        
+        <div class="container-vertical">
+            <div class="caja-glass video-box">
+                <video width="100%" height="100%" controls>
                     <source src="assets/video.mp4" type="video/mp4">
                     Tu navegador no soporta el video.
                 </video>
             </div>
 
-            <div class="caja-texto">
-                <p class="saludo">Mi amor,</p>
-                <p class="cuerpo">
-                    Hoy quiero pausar el tiempo...<br><br>
-                    (ESCRIBE AQUÍ TU CARTA LARGA...)<br><br>
-                    Te amo, siempre.
+            <div class="caja-glass texto-box">
+                <p class="typewriter">Mi amor,</p>
+                <br>
+                <p class="typewriter">
+                    Hoy quiero pausar el tiempo...
+                    <br><br>
+                    (ESCRIBE AQUÍ TU CARTA LARGA...)
                 </p>
+                <br>
+                <p class="typewriter">Te amo, siempre.</p>
                 
-                <button class="btn-lanzar-pregunta" onclick="mostrarSorpresa()">TENGO UNA PREGUNTA...</button>
-            </div>
-        </div>
-
-        <div id="popup-sorpresa" class="popup-pixel" style="display:none;">
-            <p class="texto-pixel">Después de leer<br>todo esto...</p>
-            <p class="pregunta-pixel">¿Quieres ser mi San<br>Valentín? 💖</p>
-            
-            <div class="botones-pixel">
-                <button class="btn-si-pixel" onclick="alert('¡Siiii! Te amo ❤️')">¡SÍ,<br>QUIERO!</button>
-                <button id="btn-no-pixel" class="btn-no-pixel" onmouseover="moverBoton()" onclick="moverBoton()">MMM, NO<br>SÉ</button>
+                <button class="btn-pregunta" onclick="mostrarModalPregunta()">TENGO UNA PREGUNTA...</button>
             </div>
         </div>
     </div>
 
-    <div id="overlay-playlist" class="overlay-fullscreen" style="display:none;">
-        <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-playlist')">✖</button>
-
-        <div class="contenedor-playlist">
-            <div class="caja-texto-playlist">
-                <p class="titulo-playlist">Pensando en ti con..🎧</p>
-                <div class="spotify-wrapper">
-                     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
+    <div id="overlay-playlist" class="overlay-clean" style="display:none;">
+        <button class="btn-cerrar-clean" onclick="cerrarModoLectura('overlay-playlist')">✖</button>
+        
+        <div class="container-vertical">
+            <div class="caja-glass texto-box" style="text-align: center; margin-bottom: 20px;">
+                <p class="pixel-text" style="color: #ff9ebd; font-size: 14px;">Pensando en ti con..🎧</p>
+            </div>
+            <div class="caja-glass spotify-box">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
+    </div>
+
+    <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
+        
+        <div id="modal-pregunta" class="popup-pixel-art" style="display:none;">
+            <p>Después de leer<br>todo esto...</p>
+            <h2 style="color: #ff69b4; margin: 15px 0;">¿Quieres ser mi San Valentín? 💖</h2>
+            <div class="botones-row">
+                <button class="btn-si" onclick="aceptarValentin()">¡SÍ,<br>QUIERO!</button>
+                <button id="btn-no" class="btn-no" onmouseover="esquivar()" onclick="esquivar()">MMM, NO<br>SÉ</button>
+            </div>
+        </div>
+
+        <div id="modal-exito" class="popup-pixel-art" style="display:none;">
+            <div style="font-size: 24px; margin-bottom: 10px;">🎉🥰🎉</div>
+            <h2 style="color: #ff69b4; text-transform: uppercase; line-height: 1.5;">¡Sabía que dirías<br>que sí!</h2>
+            <p style="margin: 15px 0; font-family: 'Courier Prime'; font-weight: bold;">Te amo infinito.</p>
+            <button class="btn-si" style="width: 100%;" onclick="volverAlEscritorio()">VOLVER AL ESCRITORIO</button>
+        </div>
+
     </div>
 
     <script>
-        // Ventanas Retro
+        // 1. SISTEMA DE VENTANAS DEL ESCRITORIO
         function abrirVentana(id) {
-            document.querySelectorAll('.ventana-retro').forEach(el => el.style.display = 'none');
+            // Cierra otras ventanas primero
+            document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
         function cerrarVentana(id) {
             document.getElementById(id).style.display = 'none';
         }
 
-        // Overlays
-        function abrirOverlay(id) {
-            cerrarVentana('ventana-corazon');
-            document.getElementById(id).style.display = 'flex';
-        }
-        function cerrarOverlay(id) {
-            document.getElementById(id).style.display = 'none';
-            // Ocultar la sorpresa si estaba abierta para la próxima vez
-            document.getElementById('popup-sorpresa').style.display = 'none';
-            document.getElementById('ventana-corazon').style.display = 'block';
+        // 2. SISTEMA DE "CLEAN VIEW" (OCULTAR ESCRITORIO)
+        function abrirModoLectura(idOverlay) {
+            // Ocultamos el escritorio completamente
+            document.getElementById('escritorio').style.display = 'none';
+            // Mostramos el overlay deseado
+            document.getElementById(idOverlay).style.display = 'flex';
         }
 
-        // Mostrar la sorpresa de San Valentín
-        function mostrarSorpresa() {
-            document.getElementById('popup-sorpresa').style.display = 'block';
+        function cerrarModoLectura(idOverlay) {
+            document.getElementById(idOverlay).style.display = 'none';
+            // Volvemos a mostrar el escritorio
+            document.getElementById('escritorio').style.display = 'block';
+            // Restauramos estado inicial de ventanas si quieres
+            document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
         }
 
-        // Botón Escurridizo
-        function moverBoton() {
-            const btnNo = document.getElementById('btn-no-pixel');
-            // Mover dentro del popup o pantalla (mejor pantalla para que no se salga del cuadrito pequeño)
+        // 3. LÓGICA DE SAN VALENTÍN
+        function mostrarModalPregunta() {
+            document.getElementById('modal-backdrop').style.display = 'flex';
+            document.getElementById('modal-pregunta').style.display = 'block';
+            document.getElementById('modal-exito').style.display = 'none';
+        }
+
+        function aceptarValentin() {
+            document.getElementById('modal-pregunta').style.display = 'none';
+            document.getElementById('modal-exito').style.display = 'block';
+            // Efecto confetti opcional aquí
+        }
+
+        function volverAlEscritorio() {
+            // Cierra todo y regresa al inicio
+            document.getElementById('modal-backdrop').style.display = 'none';
+            document.getElementById('overlay-carta').style.display = 'none';
+            document.getElementById('escritorio').style.display = 'block';
+            document.querySelectorAll('.ventana-pixel').forEach(v => v.style.display = 'none');
+        }
+
+        function esquivar() {
+            const btn = document.getElementById('btn-no');
             const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            btnNo.style.position = 'fixed';
-            btnNo.style.left = x + 'px';
-            btnNo.style.top = y + 'px';
-            btnNo.style.zIndex = '1000'; // Asegurar que quede encima de todo
+            const y = Math.random() * (window.innerHeight - 100);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
         }
     </script>
 </body>

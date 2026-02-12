@@ -1,19 +1,26 @@
-/* --- CONFIGURACIÓN BASE --- */
-body {
+/* =========================================
+   1. RESET UNIVERSAL (CLAVE PARA EL CENTRADO)
+   ========================================= */
+* {
+    box-sizing: border-box; /* Esto evita que el padding deforme el ancho */
     margin: 0;
     padding: 0;
-    /* Fondo fijo que no se mueve nunca */
+}
+
+body {
     background: url('assets/fondo-carta.gif') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Courier Prime', monospace;
     height: 100vh;
-    width: 100vw;
-    overflow: hidden; /* Evita scroll indeseado */
+    width: 100%;
+    overflow: hidden; /* Evita el scroll en el escritorio */
 }
 
-/* --- ESCRITORIO FIXED (SOLUCIÓN AL CENTRADO) --- */
+/* =========================================
+   2. ESCRITORIO (FIXED)
+   ========================================= */
 .escritorio {
-    position: fixed; /* Esto evita que se mueva al aparecer barras del navegador */
+    position: fixed; /* Fija los iconos para que no "bailen" */
     top: 0; 
     left: 0;
     width: 100%; 
@@ -21,85 +28,68 @@ body {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; /* Centra todo perfectamente */
+    justify-content: center; /* Centra verticalmente */
     z-index: 1;
 }
 
-/* --- BURBUJA CÓMIC --- */
+/* Burbuja Estilo Cómic */
 .burbuja-comic {
     position: relative;
     background: #ffffff;
-    border-radius: 30px; /* Redondita */
-    padding: 15px 25px;
+    border-radius: 20px;
+    padding: 15px 20px;
     font-family: 'Press Start 2P', cursive; 
     font-size: 11px;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #333;
     text-align: center;
-    max-width: 240px;
-    margin-bottom: 50px; /* Separación con los iconos */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 260px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     border: 2px solid #000;
     animation: flotar 3s ease-in-out infinite;
 }
 
-/* El piquito de la burbuja */
+/* Piquito de la burbuja */
 .burbuja-comic::after {
-    content: '';
-    position: absolute;
-    bottom: -10px; left: 50%;
+    content: ''; position: absolute; bottom: -10px; left: 50%;
     transform: translateX(-50%);
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #000 transparent;
-    display: block; width: 0;
+    border-width: 10px 10px 0; border-style: solid; border-color: #000 transparent;
 }
 .burbuja-comic::before {
-    content: '';
-    position: absolute;
-    bottom: -7px; left: 50%;
+    content: ''; position: absolute; bottom: -7px; left: 50%;
     transform: translateX(-50%);
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #fff transparent;
-    display: block; width: 0; z-index: 1;
+    border-width: 10px 10px 0; border-style: solid; border-color: #fff transparent; z-index: 1;
 }
 
-@keyframes flotar {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
-/* --- ICONOS DEL ESCRITORIO --- */
-.fila-iconos {
-    display: flex; 
-    gap: 50px; 
-    align-items: flex-end;
-}
+/* Iconos */
+.fila-iconos { display: flex; gap: 40px; align-items: flex-end; }
 
 .icono-app {
     display: flex; flex-direction: column; align-items: center; 
     cursor: pointer; width: 80px; transition: transform 0.1s;
 }
 .icono-app:active { transform: scale(0.95); }
-
 .icono-app img { 
     width: 65px; height: 65px; object-fit: contain; 
-    filter: drop-shadow(0 4px 2px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.4));
 }
 .icono-app p { 
-    background: rgba(0, 0, 0, 0.7); color: white; 
-    padding: 4px 8px; border-radius: 10px;
-    font-family: 'Press Start 2P'; font-size: 9px; 
-    margin-top: 8px; text-shadow: 1px 1px 0 #000;
+    background: rgba(0,0,0,0.7); color: white; padding: 4px 6px; 
+    border-radius: 8px; font-family: 'Press Start 2P'; font-size: 9px; margin-top: 8px;
 }
 
-/* --- VENTANAS RETRO (ROSA) --- */
+/* =========================================
+   3. VENTANAS RETRO (ROSA PIXEL)
+   ========================================= */
 .ventana-pixel {
-    position: absolute; /* Relativo al escritorio fixed */
+    position: fixed; /* Fixed asegura que esté encima y centrada */
     top: 50%; left: 50%; 
     transform: translate(-50%, -50%);
-    width: 300px;
+    width: 90%; /* Adaptable a móvil */
+    max-width: 320px;
     background: #e0e0e0;
     border: 3px solid black;
     box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
@@ -107,68 +97,82 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 .barra-titulo {
-    background: #ff69b4; /* Rosa */
-    padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 3px solid black; color: white;
-    text-shadow: 2px 2px 0 black; font-size: 10px;
+    background: #ff69b4; padding: 10px; display: flex; 
+    justify-content: space-between; align-items: center;
+    border-bottom: 3px solid black; color: white; text-shadow: 2px 2px 0 black; font-size: 10px;
 }
 .btn-x {
     background: #ff4d4d; color: white; border: 2px solid white; 
-    box-shadow: 2px 2px 0 black; cursor: pointer; 
-    font-family: 'Press Start 2P'; font-size: 10px; padding: 2px 5px;
+    box-shadow: 2px 2px 0 black; cursor: pointer; font-family: inherit; font-size: 10px; padding: 2px 6px;
 }
 .contenido-pixel { padding: 20px; text-align: center; }
-.pixel-text { font-size: 10px; margin-bottom: 20px; color: black; line-height: 1.5; }
-
+.pixel-text { font-size: 10px; margin-bottom: 20px; color: black; }
 .grid-pixel { display: flex; justify-content: space-around; gap: 10px; }
-.item-pixel { cursor: pointer; width: 70px; display: flex; flex-direction: column; align-items: center;}
-.item-pixel img { width: 40px; height: 40px; object-fit: contain; margin-bottom: 5px; }
-.item-pixel p { font-size: 8px; font-weight: bold; color: #333; line-height: 1.2; }
+.item-pixel { cursor: pointer; width: 70px; display: flex; flex-direction: column; align-items: center; }
+.item-pixel img { width: 40px; height: 40px; margin-bottom: 5px; }
+.item-pixel p { font-size: 8px; font-weight: bold; color: #333; }
 
-/* --- OVERLAYS LIMPIOS (CARTA/PLAYLIST) --- */
+/* =========================================
+   4. MODOS LECTURA (CARTA Y PLAYLIST) - CENTRADOS
+   ========================================= */
 .overlay-clean {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: transparent; /* Fondo transparente para ver el gif atrás */
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: transparent;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* Centra horizontalmente */
+    /* Quitamos justify-content center para permitir scroll si es largo */
+    padding-top: 60px; /* Espacio para que no choque con la X */
     z-index: 100;
-    padding: 20px;
+    overflow-y: auto; /* Permite scroll vertical */
 }
 
 .btn-cerrar-clean {
-    position: absolute; top: 20px; right: 20px;
+    position: fixed; top: 20px; right: 20px;
     background: #ff69b4; color: white; border: 2px solid white;
-    width: 35px; height: 35px; border-radius: 50%; 
+    width: 40px; height: 40px; border-radius: 50%; 
     font-weight: bold; cursor: pointer; z-index: 101;
     box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
-    font-size: 16px;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
 }
 
+/* CONTENEDOR DE CONTENIDO (Video, Carta, Spotify) */
 .container-vertical {
-    width: 100%; max-width: 400px;
-    display: flex; flex-direction: column; gap: 15px;
-    max-height: 90vh;
-    overflow-y: auto;
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+    max-width: 400px; /* Pero no más de 400px */
+    margin: 0 auto 50px auto; /* Centrado automático y margen abajo */
+    display: flex; flex-direction: column; gap: 20px;
 }
 
-/* CAJAS GLASS (CONTENIDO) */
+/* CAJAS GLASS (CONTENEDORES OSCUROS) */
 .caja-glass {
-    background: rgba(15, 15, 30, 0.85); /* Fondo oscuro elegante */
+    background: rgba(20, 20, 35, 0.85); /* Fondo oscuro elegante */
     backdrop-filter: blur(8px);
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
     color: white;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%; /* Asegura que llene el contenedor */
 }
 
-.video-box { height: 220px; padding: 10px; display: flex; align-items: center; justify-content: center; background: black; }
-.video-box video { border-radius: 10px; max-height: 100%; }
+/* Ajustes específicos */
+.video-box { 
+    padding: 10px; background: black; 
+    display: flex; justify-content: center; align-items: center;
+    min-height: 200px;
+}
+.video-box video { border-radius: 10px; max-height: 100%; max-width: 100%; }
 
 .texto-box { text-align: left; }
-.typewriter { font-family: 'Courier Prime'; font-size: 14px; line-height: 1.6; color: #e0e0e0; }
+.typewriter { font-family: 'Courier Prime'; font-size: 15px; line-height: 1.6; color: #f0f0f0; }
 
+.spotify-box { padding: 10px; }
+
+/* Botón "Tengo una pregunta" */
 .btn-pregunta {
-    display: block; width: 100%; margin-top: 20px;
+    display: block; width: 100%; margin-top: 25px;
     background: transparent; border: 2px solid #ff69b4;
     color: #ff69b4; padding: 12px; font-family: 'Courier Prime';
     cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
@@ -176,43 +180,42 @@ body {
 }
 .btn-pregunta:hover { background: #ff69b4; color: white; }
 
-/* --- MODALES / POPUPS (PIXEL ART) --- */
+/* =========================================
+   5. MODALES / POPUPS (SAN VALENTÍN)
+   ========================================= */
 .modal-backdrop {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); /* Oscurece el fondo */
+    background: rgba(0,0,0,0.85); /* Oscurece todo el fondo */
     z-index: 200;
     display: flex; align-items: center; justify-content: center;
 }
 
 .popup-pixel-art {
-    background: #ffe4e1; /* Rosa claro */
+    background: #ffe4e1;
     border: 4px solid #ff69b4;
-    padding: 30px 20px; width: 280px; text-align: center;
-    font-family: 'Press Start 2P'; font-size: 10px;
-    box-shadow: 0 0 0 4px white, 0 10px 20px rgba(0,0,0,0.5);
-    animation: bounceIn 0.4s;
+    padding: 25px; width: 90%; max-width: 320px; text-align: center;
+    font-family: 'Press Start 2P'; font-size: 11px;
+    box-shadow: 0 0 0 4px white, 0 15px 30px rgba(0,0,0,0.6);
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes bounceIn {
     0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.05); }
-    70% { transform: scale(0.9); }
     100% { transform: scale(1); opacity: 1; }
 }
 
-.botones-row { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+.botones-row { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
 
 .btn-si {
     background: #ff69b4; color: white; border: 2px solid white;
-    padding: 12px; font-family: inherit; font-size: 10px;
+    padding: 12px 20px; font-family: inherit; font-size: 11px;
     cursor: pointer; box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
     text-transform: uppercase;
-    transition: transform 0.1s;
 }
-.btn-si:active { transform: scale(0.95); }
+.btn-si:active { transform: scale(0.95); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
 
 .btn-no {
     background: #999; color: white; border: 2px solid white;
-    padding: 12px; font-family: inherit; font-size: 10px;
+    padding: 12px 20px; font-family: inherit; font-size: 11px;
     cursor: pointer; box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }

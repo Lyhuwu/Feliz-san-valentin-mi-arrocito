@@ -5,24 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Sofi ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="escritorio">
-        <div class="icono-escritorio" onclick="abrirCarpeta('ventana-corazon')">
-            <img src="assets/cora.gif" alt="Corazón">
-            <p>Corazón.exe</p>
+        
+        <div class="contenedor-iconos">
+            <div class="icono-escritorio" onclick="abrirCarpeta('ventana-corazon')">
+                <img src="assets/cora.gif" alt="Corazón">
+                <p>Corazón.exe</p>
+            </div>
+            <div class="icono-escritorio" onclick="abrirCarpeta('ventana-juegos')">
+                <img src="assets/icon-game.gif" alt="Juegos">
+                <p>Juegos.exe</p>
+            </div>
         </div>
-        <div class="icono-escritorio" onclick="abrirCarpeta('ventana-juegos')">
-            <img src="assets/icon-game.gif" alt="Juegos">
-            <p>Juegos.exe</p>
+
+        <div class="burbuja-inicio">
+            <p>Hola mi corazón, esto es para ti con mucho amor, ¡que disfrutes! 💌</p>
         </div>
+
     </div>
 
     <div id="ventana-corazon" class="ventana-carpeta" style="display:none;">
         <div class="barra-titulo">
             <span>❤️ Archivos de Amor</span>
-            <button class="btn-cerrar" onclick="cerrarCarpeta('ventana-corazon')">✖</button>
+            <button class="btn-cerrar-carpeta" onclick="cerrarCarpeta('ventana-corazon')">✖</button>
         </div>
         <div class="contenido-carpeta">
             <div class="icono-archivo" onclick="abrirOverlay('overlay-carta')">
@@ -43,7 +52,7 @@
     <div id="ventana-juegos" class="ventana-carpeta" style="display:none;">
         <div class="barra-titulo">
             <span>🎮 Arcade Zone</span>
-            <button class="btn-cerrar" onclick="cerrarCarpeta('ventana-juegos')">✖</button>
+            <button class="btn-cerrar-carpeta" onclick="cerrarCarpeta('ventana-juegos')">✖</button>
         </div>
         <div class="contenido-carpeta">
             <div class="icono-archivo" onclick="window.location.href='monkys.html'">
@@ -58,46 +67,55 @@
     </div>
 
     <div id="overlay-carta" class="overlay-fullscreen" style="display:none;">
-        <button class="btn-regresar" onclick="cerrarOverlay('overlay-carta')">⬅ Regresar</button>
         
-        <div class="contenido-centrado">
-            <div class="marco-video">
+        <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-carta')">✖</button>
+
+        <div class="scroll-container">
+            <div class="caja-media">
                 <video width="100%" height="100%" controls style="border-radius: 10px;">
                     <source src="assets/video.mp4" type="video/mp4">
-                    Tu navegador no soporta este video.
+                    Tu navegador no soporta el video.
                 </video>
             </div>
 
-            <h1 class="titulo-carta">Mi niña hermosa,</h1>
-            <p class="texto-carta">
-                Hoy quiero pausar el tiempo solo para decirte cuánto te amo.<br><br>
-                (ESCRIBE AQUÍ TU CARTA LARGA...)<br><br>
-                Eres mi persona favorita en todo el universo.
-            </p>
+            <div class="caja-texto">
+                <h1 class="titulo-carta">Mi niña hermosa,</h1>
+                <p class="cuerpo-carta">
+                    Hoy quiero pausar el tiempo solo para decirte cuánto te amo...<br><br>
+                    (ESCRIBE AQUÍ TU CARTA LARGA...)<br><br>
+                    Eres mi persona favorita en todo el universo.
+                </p>
 
-            <p class="pregunta-valentin">¿Quieres ser mi San Valentín?</p>
-
-            <div class="botones-container">
-                <button class="btn-si" onclick="alert('¡Sabía que dirías que sí! Te amo ❤️')">¡Obvio sí!</button>
-                <button id="btn-no" class="btn-no" onmouseover="moverBoton()" onclick="moverBoton()">Mmm no sé</button>
+                <div class="seccion-pregunta">
+                    <p class="pregunta">¿Quieres ser mi San Valentín?</p>
+                    
+                    <div class="botones-cute">
+                        <button class="btn-si" onclick="alert('¡Siiii! Te amo infinito ❤️')">¡Obvio sí! 💖</button>
+                        <button id="btn-no" class="btn-no" onmouseover="moverBoton()" onclick="moverBoton()">Mmm no sé 🐸</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="overlay-playlist" class="overlay-fullscreen" style="display:none;">
-        <button class="btn-regresar" onclick="cerrarOverlay('overlay-playlist')">⬅ Regresar</button>
         
-        <div class="contenido-centrado">
-            <h2 style="color:white; text-shadow: 2px 2px 4px #000; margin-bottom: 20px;">Nuestra Vibe 🎵</h2>
-            
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <button class="btn-cerrar-overlay" onclick="cerrarOverlay('overlay-playlist')">✖</button>
+
+        <div class="scroll-container">
+            <div class="caja-texto" style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color: #ffb7b2; margin:0;">Nuestra Playlist 🎵</h2>
             </div>
+
+            <div class="caja-media spotify-container">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
     </div>
 
     <script>
-        // --- LÓGICA DE CARPETAS ---
+        // Carpetas
         function abrirCarpeta(id) {
-            // Cierra todas antes de abrir la nueva
             document.querySelectorAll('.ventana-carpeta').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
@@ -105,25 +123,22 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // --- LÓGICA DE OVERLAYS (PANTALLA COMPLETA) ---
+        // Overlays
         function abrirOverlay(id) {
-            cerrarCarpeta('ventana-corazon'); // Cierra la ventanita gris
-            document.getElementById(id).style.display = 'flex'; // Abre el overlay
+            cerrarCarpeta('ventana-corazon');
+            document.getElementById(id).style.display = 'flex';
         }
         function cerrarOverlay(id) {
             document.getElementById(id).style.display = 'none';
-            // Opcional: Si quieres que al cerrar vuelva a abrir la carpeta, descomenta la siguiente línea:
             document.getElementById('ventana-corazon').style.display = 'block';
         }
 
-        // --- LÓGICA DEL BOTÓN TRAMPOSO ---
+        // Botón Tramposo
         function moverBoton() {
             const btnNo = document.getElementById('btn-no');
-            // Mueve el botón a una posición aleatoria en la ventana visible
-            const x = Math.random() * (window.innerWidth - 100); // Restamos el ancho aprox del botón
-            const y = Math.random() * (window.innerHeight - 50); // Restamos el alto aprox
-            
-            btnNo.style.position = 'fixed'; // Se libera del flujo normal
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 50);
+            btnNo.style.position = 'fixed';
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
         }

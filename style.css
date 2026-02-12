@@ -1,181 +1,206 @@
-/* --- FONDO DEL ESCRITORIO --- */
+/* --- FONDO GENERAL --- */
 body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
     background: url('assets/fondo-carta.gif') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
-    overflow: hidden; /* Evita scroll en el escritorio */
+    overflow: hidden; /* Evita scroll en el escritorio principal */
 }
 
-/* --- ICONOS DEL ESCRITORIO --- */
+/* --- ESCRITORIO --- */
 .escritorio {
-    display: flex;
-    gap: 40px;
-    padding: 40px;
-    justify-content: center; /* Centrados arriba */
+    display: flex; 
+    gap: 40px; 
+    padding: 50px; 
+    justify-content: center;
 }
-
-.icono-escritorio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    text-align: center;
-    width: 90px;
+.icono-escritorio { 
+    text-align: center; 
+    cursor: pointer; 
+    width: 90px; 
+    transition: transform 0.2s; 
 }
-
-.icono-escritorio img {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
-    transition: transform 0.2s;
+.icono-escritorio:hover { transform: scale(1.1); }
+.icono-escritorio img { 
+    width: 70px; 
+    height: 70px; 
+    object-fit: contain; 
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); 
 }
-
-.icono-escritorio:hover img { transform: scale(1.1); }
-
-.icono-escritorio p {
-    color: white;
-    background: rgba(0,0,0,0.6);
-    padding: 2px 6px;
-    border-radius: 4px;
+.icono-escritorio p { 
+    color: white; 
+    background: rgba(0,0,0,0.6); 
+    border-radius: 5px; 
+    font-weight: bold; 
+    margin-top: 5px; 
     font-size: 14px;
-    margin-top: 5px;
-    font-weight: bold;
 }
 
-/* --- ESTILO DE LAS CARPETAS (VENTANAS) --- */
+/* --- VENTANAS DE CARPETAS (Estilo Retro) --- */
 .ventana-carpeta {
-    position: absolute;
-    top: 50%; left: 50%;
+    position: absolute; 
+    top: 50%; left: 50%; 
     transform: translate(-50%, -50%);
-    width: 300px;
-    background: #c0c0c0; /* Gris Windows 98 */
-    border: 2px solid #fff;
-    border-right-color: #000;
+    width: 300px; 
+    background: #c0c0c0; 
+    border: 2px solid white; 
+    border-right-color: #000; 
     border-bottom-color: #000;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
-    z-index: 10; /* Encima del escritorio */
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.5); 
+    z-index: 50;
 }
-
 .barra-titulo {
-    background: linear-gradient(90deg, #000080, #1084d0);
-    color: white;
-    padding: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: linear-gradient(90deg, #000080, #1084d0); 
+    color: white; 
+    padding: 5px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
     font-weight: bold;
 }
-
-.btn-cerrar {
-    background: #c0c0c0;
-    border: 1px outset white;
-    font-weight: bold;
-    cursor: pointer;
+.btn-cerrar { 
+    background: #c0c0c0; 
+    border: 1px outset white; 
+    cursor: pointer; 
+    font-weight: bold; 
     width: 25px;
 }
-
-.contenido-carpeta {
-    background: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
-    border: 2px inset #c0c0c0;
-    margin: 5px;
+.contenido-carpeta { 
+    padding: 20px; 
+    display: flex; 
+    justify-content: space-around; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+}
+.icono-archivo { 
+    text-align: center; 
+    cursor: pointer; 
+    width: 70px; 
+}
+.icono-archivo img { 
+    width: 50px; 
+    height: 50px; 
+    object-fit: contain; 
+}
+.icono-archivo p { 
+    font-size: 12px; 
+    margin-top: 5px; 
+    color: black;
 }
 
-.icono-archivo {
-    width: 70px;
-    text-align: center;
-    cursor: pointer;
-}
-.icono-archivo img { width: 50px; height: 50px; object-fit: contain; }
-.icono-archivo p { font-size: 11px; margin-top: 5px; color: black; }
-
-/* --- EL VISOR ESPECIAL (Overlay tipo Captura) --- */
-.overlay-container {
-    position: fixed;
-    top: 0; left: 0;
+/* --- OVERLAYS PANTALLA COMPLETA --- */
+.overlay-fullscreen {
+    position: fixed; 
+    top: 0; left: 0; 
     width: 100%; height: 100%;
-    /* AQUÍ ESTÁ EL TRUCO: Fondo negro transparente para ver las estrellas atrás */
+    /* Fondo negro al 85% para que resalten las letras sobre las estrellas */
     background: rgba(0, 0, 0, 0.85); 
-    backdrop-filter: blur(2px);
-    z-index: 100; /* Encima de todo */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alineado arriba para scrollear */
+    backdrop-filter: blur(4px); /* Difumina un poco el fondo */
+    z-index: 100;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
     overflow-y: auto; /* Permite scroll si la carta es larga */
+    padding-top: 60px; /* Espacio para el botón regresar */
 }
 
-.btn-cerrar-overlay {
-    position: fixed; /* Fijo en la esquina */
-    top: 20px; right: 20px;
-    background: #ff4d4d;
+.btn-regresar {
+    position: fixed; 
+    top: 20px; left: 20px;
+    background: transparent; 
+    border: 2px solid white; 
     color: white;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: 40px; height: 40px;
-    font-size: 20px;
+    padding: 8px 15px; 
+    font-family: inherit; 
+    font-weight: bold; 
     cursor: pointer;
+    border-radius: 20px; 
     z-index: 101;
 }
 
-.visor-content {
-    width: 90%;
-    max-width: 450px;
-    margin-top: 60px; /* Espacio para no tapar el botón cerrar */
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.contenido-centrado {
+    width: 90%; 
+    max-width: 500px;
+    padding-bottom: 50px;
+    text-align: center;
+    animation: aparecer 0.8s ease-out;
 }
 
-/* Caja Blanca del Video */
-.caja-video {
-    background: white;
-    padding: 10px;
-    border-radius: 15px;
-    height: 250px;
-    border: 3px solid #2d2d50;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+@keyframes aparecer { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
 }
 
-/* Caja Oscura del Texto (Estilo Gradiente) */
-.caja-texto {
-    /* Fondo estilo tu captura */
-    background: linear-gradient(180deg, #132a46 0%, #0d1620 100%);
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 15px;
-    padding: 30px;
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    text-align: left;
-    font-size: 15px;
-    line-height: 1.6;
+/* --- ESTILOS ESPECÍFICOS: CARTA --- */
+.marco-video {
+    width: 100%; 
+    max-width: 400px; /* Tamaño controlado del video */
+    margin: 0 auto 20px auto;
+    border: 3px solid white; 
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    background: black;
 }
 
-.titulo-carta {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #a8dfff; /* Azulito claro */
+.titulo-carta { 
+    color: #ff69b4; 
+    font-size: 2em; 
+    margin-bottom: 20px; 
+    text-shadow: 2px 2px 0px #000; 
+}
+.texto-carta { 
+    color: white; 
+    font-size: 1.1em; 
+    line-height: 1.6; 
+    text-shadow: 1px 1px 2px black; 
+    font-weight: bold; 
+}
+.pregunta-valentin { 
+    color: #ffd700; 
+    font-size: 1.5em; 
+    margin-top: 40px; 
+    text-shadow: 2px 2px 0px #000; 
+    font-weight: bold; 
 }
 
-.btn-accion {
-    display: block;
+/* Botones Si/No */
+.botones-container {
+    margin-top: 30px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 30px;
+    position: relative; 
+    height: 60px; 
     width: 100%;
-    margin-top: 30px;
-    padding: 12px;
-    background: #ff69b4;
-    color: white;
-    border: 2px solid white;
-    font-family: inherit;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
 }
-.btn-accion:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
+
+.btn-si {
+    background: #32cd32; 
+    color: white; 
+    border: none; 
+    padding: 12px 25px;
+    font-size: 1.2em; 
+    border-radius: 10px; 
+    cursor: pointer;
+    box-shadow: 0 4px 0 #228b22; 
+    font-weight: bold; 
+    z-index: 200;
+}
+.btn-si:active { 
+    box-shadow: none; 
+    transform: translateY(4px); 
+}
+
+.btn-no {
+    background: #ff4500; 
+    color: white; 
+    border: none; 
+    padding: 12px 25px;
+    font-size: 1.2em; 
+    border-radius: 10px; 
+    cursor: pointer;
+    box-shadow: 0 4px 0 #b22222; 
+    font-weight: bold;
+    transition: all 0.1s ease; /* Movimiento rápido */
+}
